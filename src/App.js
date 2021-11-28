@@ -1,7 +1,5 @@
-
-import { Router, Route } from 'react-router-dom';
-import {Switch} from "switch"
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 import Homepage from "./homepage"
 import About from "./about"
 import Blog from "./blogs"
@@ -10,16 +8,12 @@ function App() {
     
     return (
      
-     
-    <Router basename="/index.html">
-       
-         <Switch>
-   <Route   pathname="/app" component={Homepage} />
+        <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="about" element={<About />} />
+        <Route path="blogs" element={<Blog />} />
+      </Routes>
    
-   <Route   pathname="/about" component={About} />
-   <Route   pathname="/blogs" component={Blog} />
-    </Switch>
-    </Router>
   
     );
 }
