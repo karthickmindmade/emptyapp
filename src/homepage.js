@@ -13,9 +13,9 @@ function Homepage() {
     return (
         <div>
           <Navbar
-         navlinks1={ <a className="nav-link active" aria-current="page" href="/" >Home</a>}
-         navlinks2={<Link className="nav-link active" to="/about">About</Link>}
-         navlinks3={<Link className="nav-link active" to="/blogs">blogs</Link>}
+         navlinks1={ <a className="nav-link active text-white" aria-current="page" href="/" >Home</a>}
+         navlinks2={<Link className="nav-link active text-white" to="/about">About</Link>}
+         navlinks3={<Link className="nav-link active text-white" to="/blogs">blogs</Link>}
         />
 
 
