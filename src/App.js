@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import Homepage from "./homepage"
 import About from "./about"
 import Blog from "./blogs"
+import Numbercounter from "./counter";
+import Apidata from "./userdata";
 
 function App() {
     
@@ -12,6 +14,8 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="about" element={<About />} />
         <Route path="blogs" element={<Blog />} />
+        <Route path="counter" element={<Numbercounter />} />
+        <Route path="userdata" element={<Apidata />} />
       </Routes>
    
   
