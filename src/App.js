@@ -6,10 +6,12 @@ import Blog from "./blogs"
 import Numbercounter from "./counter";
 import Apidata from "./userdata";
 import About2 from "./mm"
+import Navbar from "./components/navbar";
 function App() {
     
     return (
-     
+     <div>
+         <Navbar />
         <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="about" element={<About />} />
@@ -18,7 +20,7 @@ function App() {
         <Route path="userdata" element={<Apidata />} />
              <Route path="mm" element={<About2 />} />
       </Routes>
-   
+      </div>
   
     );
 }

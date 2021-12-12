@@ -1,8 +1,8 @@
 import React,{Component} from "react";
 import Button from "./components/Button";
-import Navbar from "./components/navbar";
+
 import "./css/style.css";
-import { Link } from "react-router-dom";
+
 
 export default class Numbercounter extends Component {
   
@@ -38,11 +38,7 @@ export default class Numbercounter extends Component {
    
     return (
       <div>
-         <Navbar
-         navlinks1={ <a className="nav-link active text-white" aria-current="page" href="/" >Home</a>}
-         navlinks2={<Link className="nav-link active text-white" to="/about">About</Link>}
-         navlinks3={<Link className="nav-link active text-white" to="/blogs">blogs</Link>}
-        />
+        
       <div className="app">
     
         <div>

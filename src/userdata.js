@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from "react";
 import ReactPaginate from 'react-paginate';
-import { Link } from "react-router-dom";
+
 import 'react-tabs/style/react-tabs.css';
-import Navbar from "./components/navbar";
+
 //import { useNavigate } from "react-router-dom";
 
 
@@ -34,11 +34,7 @@ export default function Apidata() {
 
   return (
       <div>
-          <Navbar
-         navlinks1={ <a className="nav-link active text-white" aria-current="page" href="/" >Home</a>}
-         navlinks2={<Link className="nav-link active text-white" to="/about">About</Link>}
-         navlinks3={<Link className="nav-link active text-white" to="/blogs">blogs</Link>}
-        />
+         
             <div className="container mt-5">
                 <div className="tabs" defaultIndex={0} >
                   
