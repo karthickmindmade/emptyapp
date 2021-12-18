@@ -5,8 +5,8 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import ProductLayout from "./components/productLayout";
 
 function Products() {
-    var[search,setSearch] = useState('');
-  var[selectedValue,setSelectedValue] = useState('');
+    var[search] = useState('');
+  var[selectedValue] = useState('');
   console.log(selectedValue)
     var[items,setItem] = useState([]);
 
@@ -20,7 +20,7 @@ function Products() {
     return (
         <div className="mt-5">
             <div className="products-body row">
-    {items.filter(val=>{
+    {items.filter(val=>() =>{
                            if(search === ""){
                                return val;
                            }else if(

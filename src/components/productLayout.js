@@ -6,7 +6,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 function ProductLayout(props) {
     
-    var[items,setItem] = useState([]);
+    var[items] = useState([]);
 
     return (
         <div key={items} className="col productCard">

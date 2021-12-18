@@ -9,8 +9,8 @@ import 'react-tabs/style/react-tabs.css';
 
 export default function Apidata() {
   //  let navigate = useNavigate();
-  var[search,setSearch] = useState('');
-  var[selectedValue,setSelectedValue] = useState('');
+  var[search] = useState('');
+  var[selectedValue] = useState('');
   console.log(selectedValue)
     var[items,setItem] = useState([]);
    
@@ -50,7 +50,7 @@ export default function Apidata() {
                             <div className="col"><b>AVATAR</b></div>
                         </div>
 
-                        {items.filter(val=>{
+                        {items.filter(val=>() =>{
                            if(search === ""){
                                return val;
                            }else if(
