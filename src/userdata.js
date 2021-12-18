@@ -9,10 +9,12 @@ import 'react-tabs/style/react-tabs.css';
 
 export default function Apidata() {
   //  let navigate = useNavigate();
-
-    var[item,setItem] = useState([]);
+  var[search,setSearch] = useState('');
+  var[selectedValue,setSelectedValue] = useState('');
+  console.log(selectedValue)
+    var[items,setItem] = useState([]);
    
-    
+    search = "George"
      
  useEffect(() =>{
      
@@ -39,6 +41,7 @@ export default function Apidata() {
                 <div className="tabs" defaultIndex={0} >
                   
                     <div>
+                   
                     <div className="row ps-4 d-flex bg-primary text-white border-white">
                             <div className="col ms-3"><b>ID</b></div>
                             <div className="col me-5"><b>FIRST NAME</b></div>
@@ -47,8 +50,20 @@ export default function Apidata() {
                             <div className="col"><b>AVATAR</b></div>
                         </div>
 
-                    {item.map((items,k)=>
-                         <div key={k} className="row ps-5 d-flex bg-light" >
+                        {items.filter(val=>{
+                           if(search === ""){
+                               return val;
+                           }else if(
+                           
+                               val.first_name.toLowerCase().includes(search.toLowerCase()) 
+                              
+                              
+                                         
+                           ){
+                               return val;
+                           }
+                       }).map((items)=>
+                         <div key={items} className="row ps-5 d-flex bg-light" >
                                 <div className="col mt-4"> {items.id}</div>
                                 <div className="col mt-4"> {items.first_name}</div>
                                 <div className="col mt-4"> {items.last_name}</div>

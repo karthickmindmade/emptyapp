@@ -41,3 +41,13 @@
 .app .buttons button:focus{
     outline: 0;
 }
+.product-img img {
+    width: 74px !important;
+}
+.product-img img {
+    width: 250px !important;
+}
+.productCard {
+    padding: 10px;
+    margin: 10px;
+}

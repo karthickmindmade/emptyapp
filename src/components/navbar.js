@@ -10,7 +10,7 @@ function Navbar() {
 
     return (
         <div>
-<nav className="navbar navbar-expand-lg navbar-light text-white bg-primary">
+<nav className="navbar navbar-expand-lg navbar-light text-white bg-primary fixed-top">
   <div className="container">
   
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,6 +35,7 @@ function Navbar() {
           <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink text-white">
             <li><Link className="nav-link active text-dark" to="/counter">counter</Link></li>
             <li><Link className="nav-link active text-dark" to="/userdata">userdata</Link></li>
+            <li><Link className="nav-link active text-dark" to="/products">products</Link></li>
             <li><a className="dropdown-item text-dark" href="/">Something else here</a></li>
           </ul>
         </li>
