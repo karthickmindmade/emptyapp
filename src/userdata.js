@@ -35,9 +35,9 @@ export default function Apidata() {
 
 
   return (
-      <div className="mt-5 margin">
+      <div className="margin">
          
-            <div className="container mt-5">
+            <div className="container">
                 <div className="tabs" defaultIndex={0} >
                   
                     <div>
