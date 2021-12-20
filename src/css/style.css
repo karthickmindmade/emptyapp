@@ -153,6 +153,10 @@ a.col.productCard {
     .product-details-body {
         display: inline;
     }
+    .product-img img {
+    width: 284px !important;
+    height: 40vh;
+}
     .left-img {
         /* padding: 0px 30px; */
         padding: 19px 18px;
