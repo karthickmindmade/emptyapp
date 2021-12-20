@@ -132,6 +132,10 @@ a.col.productCard {
     font-size: 14px;
     padding: 50px 71px 6px 1px;
 }
+.product-details-body {
+    display: flex;
+    padding: 25px;
+}
 @media only screen and (max-width: 600px) {
     .product-details-body {
         display: inline;

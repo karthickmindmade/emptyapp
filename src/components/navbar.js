@@ -36,7 +36,7 @@ function Navbar() {
             <li><Link className="nav-link active text-dark" to="/counter">counter</Link></li>
             <li><Link className="nav-link active text-dark" to="/userdata">userdata</Link></li>
             <li><Link className="nav-link active text-dark" to="/products">products</Link></li>
-            <li><a className="dropdown-item text-dark" href="/">Something else here</a></li>
+            <li><a className="dropdown-item text-dark" href="/got">Something else here</a></li>
           </ul>
         </li>
       </ul>

@@ -9,6 +9,7 @@ import About2 from "./mm"
 import Navbar from "./components/navbar";
 import Products from "./products";
 import Productdetails from "./productdetails";
+import Nofound from "./components/nofound";
 function App() {
     
     return (
@@ -23,6 +24,7 @@ function App() {
            <Route path="mm" element={<About2 />} />
            <Route path="products" element={<Products />} />
            <Route path="productdetails" element={<Productdetails />} />
+           <Route path="*" element={<Nofound />} />
         </Routes>
       </div>
   
