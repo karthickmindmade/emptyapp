@@ -1,6 +1,12 @@
 a{
     text-decoration: none !important;
 }
+.body{
+overflow: hidden !important;
+}
+.products-body{
+overflow: hidden !important;
+}
 .app {
     display: flex;
     flex-direction: row;
@@ -159,6 +165,10 @@ select.product-catg {
     .product-details-body {
         display: inline;
     }
+    .product-img img {
+    width: 284px !important;
+    height: 40vh;
+}
     .left-img {
         /* padding: 0px 30px; */
         padding: 19px 18px;
