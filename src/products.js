@@ -55,7 +55,7 @@ var[productsList,setProductsList] = useState([]);
                            ){
                                return val;
                            }
-                       }).map((productsList)=>
+                       }) return.map((productsList)=>
 
 <ProductLayout
   productimg={<img src={productsList.image}  alt="avatar"/>}
