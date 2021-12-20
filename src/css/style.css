@@ -41,3 +41,17 @@
 .app .buttons button:focus{
     outline: 0;
 }
+.page-link {
+    position: relative;
+    display: block;
+    border-radius: 34px !important;
+    margin: 1px !important;
+    color: #0d6efd;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.users {
+    border: 1px solid #0d6efd8f;
+}

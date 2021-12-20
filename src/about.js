@@ -21,7 +21,9 @@ function About() {
           
           
  
-     About
+<div className="container">
+<h1>about</h1>
+</div>
     </div>
     );
 }

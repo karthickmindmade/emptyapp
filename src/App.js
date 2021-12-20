@@ -16,6 +16,7 @@ function App() {
         <Route path="blogs" element={<Blog />} />
         <Route path="counter" element={<Numbercounter />} />
         <Route path="userdata" element={<Apidata />} />
+        
       </Routes>
    
   

@@ -24,7 +24,9 @@ function Blog() {
            
  
 
-     Blog
+<div className="container">
+<h1>blogs</h1>
+</div>
     </div>
     );
 }

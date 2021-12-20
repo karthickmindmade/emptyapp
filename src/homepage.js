@@ -19,8 +19,8 @@ function Homepage() {
         />
 
 
-<div>
-home
+<div className="container">
+<h1>home</h1>
 </div>
            
      
