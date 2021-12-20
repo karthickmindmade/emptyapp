@@ -9,7 +9,7 @@ function ProductLayout(props) {
     var[items] = useState([]);
 
     return (
-        <a key={items} onClick={props.clickfunction} className="col productCard">
+        <a key={items} href="" onClick={props.clickfunction} className="col productCard">
            <div className="product-price">
             ${props.productprice}
             </div>
@@ -20,7 +20,7 @@ function ProductLayout(props) {
                         size={20}
                         activeColor="rgb(13 110 253)"
                         
-                    />
+              />
             </div>
             <div className="product-img">
               {props.productimg}
@@ -31,6 +31,7 @@ function ProductLayout(props) {
            
             <div className="product-description">
             {props.productdescription}
+            {props.productCategory}
             </div>
        </a>
     );

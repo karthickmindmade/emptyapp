@@ -13,7 +13,7 @@ function Productdetails() {
       <div className="product-details-body">
            <div className="left-body">
                <div className="left-img">
-              <img src={state.productImage} />
+              <img src={state.productImage} alt="avatar" />
               </div>
            </div>
            <div className="right-body">

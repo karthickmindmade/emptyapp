@@ -31,7 +31,7 @@ var[productsList,setProductsList] = useState([]);
 })
 
     }
-     
+    
     return (
         <div className="mt-5">
             <div className="products-body row">
@@ -40,7 +40,7 @@ var[productsList,setProductsList] = useState([]);
                                return val;
                            }else if(
                            
-                               val.first_name.toLowerCase().includes(search.toLowerCase()) 
+                               val.category.toLowerCase().includes(search.toLowerCase()) 
                               
                               
                                          
@@ -54,6 +54,7 @@ var[productsList,setProductsList] = useState([]);
   producttitle={productsList.title}
   productprice={productsList.price}
   productrating={productsList.rating.rate}
+  productCategory={productsList.category}
   clickfunction={()=>ProductClick(productsList)}
 />
 

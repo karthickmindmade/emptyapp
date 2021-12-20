@@ -136,6 +136,9 @@ a.col.productCard {
     display: flex;
     padding: 25px;
 }
+.navbar-toggler img {
+    width: 300px;
+}
 @media only screen and (max-width: 600px) {
     .product-details-body {
         display: inline;

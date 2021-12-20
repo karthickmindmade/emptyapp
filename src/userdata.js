@@ -9,12 +9,12 @@ import 'react-tabs/style/react-tabs.css';
 
 export default function Apidata() {
   //  let navigate = useNavigate();
-  var[search] = useState('');
+ 
   var[selectedValue] = useState('');
   console.log(selectedValue)
     var[item,setItem] = useState([]);
    
-    search = "George"
+   
      
  useEffect(() =>{
      
@@ -53,7 +53,7 @@ function handleSelect(){
                         </div>
 
                     {item.map((items,k)=>
-                      <a onClick={handleSelect}>
+                      <a href="" onClick={handleSelect}>
                          <div key={k} className="row ps-5 d-flex bg-light users" >
                               
                                 <div className="col mt-4"> {items.id}</div>
