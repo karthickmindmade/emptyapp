@@ -1,6 +1,9 @@
 a{
     text-decoration: none !important;
 }
+.body{
+overflow: hidden ! important
+}
 .app {
     display: flex;
     flex-direction: row;
