@@ -4,10 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 
-function Blog() {
+function About2() {
     
-   
-   
    
 
     return (
@@ -16,15 +14,12 @@ function Blog() {
 
 
 
-
-           
+          
+          
  
-
-<div className="container">
-<h1>blogs</h1>
-</div>
+     About
     </div>
     );
 }
 
-export default Blog;
+export default About2;

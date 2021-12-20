@@ -1,18 +1,20 @@
 import React,{useState,useEffect} from "react";
 import ReactPaginate from 'react-paginate';
-import { Link } from "react-router-dom";
+
 import 'react-tabs/style/react-tabs.css';
-import Navbar from "./components/navbar";
+
 //import { useNavigate } from "react-router-dom";
 
 
 
 export default function Apidata() {
   //  let navigate = useNavigate();
-
-    var[item,setItem] = useState([]);
+  var[search] = useState('');
+  var[selectedValue] = useState('');
+  console.log(selectedValue)
+    var[items,setItem] = useState([]);
    
-    
+    search = "George"
      
  useEffect(() =>{
      
@@ -35,6 +37,7 @@ function handleSelect(){
 }
 
   return (
+<<<<<<< HEAD
       <div>
           <Navbar
          navlinks1={ <a className="nav-link active text-white" aria-current="page" href="/" >Home</a>}
@@ -58,8 +61,15 @@ function handleSelect(){
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 
   <div className="tabs" defaultIndex={0} >
+=======
+      <div className="margin">
+         
+            <div className="container">
+                <div className="tabs" defaultIndex={0} >
+>>>>>>> caaf2a9f6333663e2cd3372900d65f93f31877c6
                   
                     <div>
+                   
                     <div className="row ps-4 d-flex bg-primary text-white border-white">
                             <div className="col ms-3"><b>ID</b></div>
                             <div className="col me-5"><b>FIRST NAME</b></div>
@@ -68,10 +78,27 @@ function handleSelect(){
                             <div className="col"><b>AVATAR</b></div>
                         </div>
 
+<<<<<<< HEAD
                     {item.map((items,k)=>
                       <a onClick={handleSelect}>
                          <div key={k} className="row ps-5 d-flex bg-light users" >
                               
+=======
+                        {items.filter(val=>() =>{
+                           if(search === ""){
+                               return val;
+                           }else if(
+                           
+                               val.first_name.toLowerCase().includes(search.toLowerCase()) 
+                              
+                              
+                                         
+                           ){
+                               return val;
+                           }
+                       }).map((items)=>
+                         <div key={items} className="row ps-5 d-flex bg-light" >
+>>>>>>> caaf2a9f6333663e2cd3372900d65f93f31877c6
                                 <div className="col mt-4"> {items.id}</div>
                                 <div className="col mt-4"> {items.first_name}</div>
                                 <div className="col mt-4"> {items.last_name}</div>
