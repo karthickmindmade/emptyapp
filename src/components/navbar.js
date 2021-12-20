@@ -14,10 +14,13 @@ function Navbar() {
   <div className="container">
   
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      
+      <img src="nav.png" alt="icon" />
     </button>
+    <div className="nav-logo">
+    <img src="flipkart.png" alt="logo" />
+  </div>
     <div className="collapse navbar-collapse " id="navbarNavDropdown">
-      <ul className="navbar-nav ms-5 ">
+      <ul className="navbar-nav">
       <li className="nav-item">
         <Link className="nav-link active text-white" aria-current="page" to="/" >Home</Link>
         </li> 

@@ -137,7 +137,11 @@ a.col.productCard {
     padding: 25px;
 }
 .navbar-toggler img {
-    width: 300px;
+    width: 26px;
+}
+.nav-logo img {
+    width: 86px;
+    /* padding: 30px 20px; */
 }
 @media only screen and (max-width: 600px) {
     .product-details-body {
