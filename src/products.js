@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom"
 function Products() {
    
     const navigate = useNavigate();
-    var[search] = useState('');
+    var[search,setSearch] = useState('');
   var[selectedValue] = useState('');
   console.log(selectedValue)
 var[productsList,setProductsList] = useState([]);
@@ -32,15 +32,26 @@ var[productsList,setProductsList] = useState([]);
 
     }
     
+   
     return (
-        <div className="mt-5">
+        <div className=" mt-5">
+           <select className="product-catg" type="text" value={search} onChange={(e)=>setSearch(e.target.value)} >
+            <option value="">Please choose an category</option>
+  <option value="men's clothing">men's clothing</option>
+  <option value="jewelery">jewelery</option>
+  <option value="electronics">electronics</option>
+  <option value="women's clothing">women's clothing</option>
+</select>
             <div className="products-body row">
-    {productsList.filter(val=>() =>{
+            
+            {productsList.filter(val =>{
+                
                            if(search === ""){
                                return val;
                            }else if(
-
-                               val.category.toLowerCase().includes(search.toLowerCase())       
+                               val.category.toLowerCase().includes(search.toLowerCase())
+                              
+                                         
                            ){
                                return val;
                            }
