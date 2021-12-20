@@ -14,7 +14,7 @@ function Navbar() {
   <div className="container">
   
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <img src="./public/flipkart.png"  />
+      
     </button>
     <div className="collapse navbar-collapse " id="navbarNavDropdown">
       <ul className="navbar-nav ms-5 ">

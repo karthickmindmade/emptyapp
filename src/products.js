@@ -39,11 +39,8 @@ var[productsList,setProductsList] = useState([]);
                            if(search === ""){
                                return val;
                            }else if(
-                           
-                               val.category.toLowerCase().includes(search.toLowerCase()) 
-                              
-                              
-                                         
+
+                               val.category.toLowerCase().includes(search.toLowerCase())       
                            ){
                                return val;
                            }
