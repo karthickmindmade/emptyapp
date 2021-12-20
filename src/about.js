@@ -8,7 +8,7 @@ function About() {
    
 
     return (
-        <div>
+        <div className="margin">
      About
     </div>
     );

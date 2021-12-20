@@ -20,7 +20,7 @@ function Blog() {
            
  
 
-<div className="container">
+<div className="container margin">
 <h1>blogs</h1>
 </div>
     </div>

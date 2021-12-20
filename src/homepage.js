@@ -11,7 +11,7 @@ function Homepage() {
         <div>
         
 
-<div className="container">
+<div className="container margin">
 <h1>home</h1>
 </div>
            

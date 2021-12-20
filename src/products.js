@@ -1,26 +1,41 @@
 import React,{useState,useEffect} from "react";
-
+ import Axios from 'axios' 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import ProductLayout from "./components/productLayout";
+import { useNavigate } from "react-router-dom"
 
 function Products() {
+   
+    const navigate = useNavigate();
     var[search] = useState('');
   var[selectedValue] = useState('');
   console.log(selectedValue)
-    var[items,setItem] = useState([]);
-
+var[productsList,setProductsList] = useState([]);
     useEffect(() =>{
-     
-        fetch (`https://reqres.in/api/users`)
-            .then(res => res.json())
-            .then(res => setItem(res.data))
-     },[]);
+        Axios.get("https://fakestoreapi.com/products").then(res=>{
+            setProductsList(res.data);
+            //setTotalUsers(res.data.total);
+         });
+     }, []); 
+   const ProductClick =(productsList) =>{
+    navigate ('/productdetails',{state : {
+        productTitle : productsList.title,
+        productPrice : productsList.price,
+        productDescription : productsList.description,
+        productCategory : productsList.category,
+        productImage : productsList.image,
+        productRate : productsList.rating.rate,
+        productCount : productsList.rating.count
+    }  
+})
 
+    }
+     
     return (
         <div className="mt-5">
             <div className="products-body row">
-    {items.filter(val=>() =>{
+    {productsList.filter(val=>() =>{
                            if(search === ""){
                                return val;
                            }else if(
@@ -32,18 +47,19 @@ function Products() {
                            ){
                                return val;
                            }
-                       }).map((items)=>
+                       }).map((productsList)=>
 
 <ProductLayout
-  productimg={<img src={items.avatar}  alt="avatar"/>}
-  producttitle={items.first_name}
-  productprice={items.last_name}
-  productdescription={items.email}
-
+  productimg={<img src={productsList.image}  alt="avatar"/>}
+  producttitle={productsList.title}
+  productprice={productsList.price}
+  productrating={productsList.rating.rate}
+  clickfunction={()=>ProductClick(productsList)}
 />
 
 )}
 </div>
+
     </div>
     );
 }

@@ -1,3 +1,6 @@
+a{
+    text-decoration: none !important;
+}
 .app {
     display: flex;
     flex-direction: row;
@@ -41,16 +44,116 @@
 .app .buttons button:focus{
     outline: 0;
 }
+
 .product-img img {
-    width: 74px !important;
+    width: 284px !important;
+    height: 45vh;
+    left: 0;
+    padding: 18px;
+    right: 0;
+    margin: auto;
+    display: block;
 }
-.product-img img {
-    width: 250px !important;
+.product-title {
+   
+    color: black;
+    font-weight: 500;
+    text-align: center;
+    font-size: 14px;
+    font-family: system-ui;
+    display: block;
+    
+}
+.product-price {
+    position: absolute;
 }
 .productCard {
     padding: 10px;
     margin: 10px;
+    position: relative;
 }
 .margin{
     margin-top: 80px !important;
 }
+.products-body.row {
+    padding: 31px;
+    background-color: #0d6efd1c;
+}
+.product-price {
+    position: absolute;
+    color: #0d6efd;
+    font-weight: 650;
+}
+a.col.productCard {
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+.start-rating {
+    float: right;
+    margin: -9px 1px;
+}
+.product-details-body {
+    display: flex;
+}
+.left-img img {
+    width: 405px;
+    height: 71vh;
+}
+.left-img {
+    padding: 0px 30px;
+}
+.productTitle {
+    color: grey;
+    font-weight: 650;
+    font-size: 20px;
+}
+.right-body {
+    padding: 48px 0px;
+}
+.left-body {
+    width: 45%;
+}
+.productPrice {
+    font-family: sans-serif;
+    font-size: 20px;
+    color: #2a3547;
+    font-weight: 700;
+}
+.productDescription span {
+    color: grey;
+    /* padding-top: 31px; */
+    font-weight: 600;
+    font-size: 14px;
+    /* margin-top: 40px !important; */
+}
+.productDescription {
+    color: #423e3e;
+    font-family: system-ui;
+    font-size: 14px;
+    padding: 50px 71px 6px 1px;
+}
+@media only screen and (max-width: 600px) {
+    .product-details-body {
+        display: inline;
+    }
+    .left-img {
+        /* padding: 0px 30px; */
+        padding: 19px 18px;
+    }
+    .left-img img {
+        width: 364px;
+        height: 59vh;
+    }
+    .productDescription {
+        color: #423e3e;
+        font-family: system-ui;
+        font-size: 14px;
+        padding: 32px 71px 6px 1px;
+    }
+    .right-content {
+        padding: 0px 22px;
+    }
+    .right-body {
+        padding: 29px 0px;
+    }
+  }
