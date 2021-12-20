@@ -4,6 +4,9 @@ a{
 .body{
 overflow: hidden !important;
 }
+.products-body{
+overflow: hidden !important;
+}
 .app {
     display: flex;
     flex-direction: row;
