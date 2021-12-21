@@ -44,14 +44,13 @@ var[productsList,setProductsList] = useState([]);
 </select>
             <div className="products-body row">
             
-            {productsList.filter(val =>{
-                
+            {productsList.filter ( val =>()=>{
+                     
                            if(search === ""){
                                return val;
                            }else if(
                                val.category.toLowerCase().includes(search.toLowerCase())
-                              
-                                         
+               
                            ){
                                return val;
                            }
