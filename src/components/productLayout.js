@@ -31,6 +31,9 @@ function ProductLayout(props) {
            
             <div className="product-description">
             {props.productdescription}
+            
+            </div>
+            <div className="categery">
             {props.productCategory}
             </div>
        </a>
