@@ -75,11 +75,10 @@ overflow: hidden !important;
 }
 .productCard {
     padding: 10px;
-    /* margin: 10px; */
     right: 0;
     position: relative;
     left: 0;
-    margin: 10px auto;
+    margin: 10px 10px auto;
 }
 .margin{
     margin-top: 80px !important;
@@ -163,9 +162,7 @@ select.product-catg {
     display: flex;
     padding: 25px;
 }
-.col {
-    flex: 0  0 !important;
-}
+
 .navbar-toggler img {
     width: 26px;
 }
