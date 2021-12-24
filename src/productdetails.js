@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import "./css/style.css";
 import { useLocation } from "react-router-dom"
+import Numbercounter from "./counter";
+
 
 function Productdetails() {
  
@@ -29,6 +31,9 @@ function Productdetails() {
                         activeColor="rgb(13 110 253)"
                         
                     />
+               </div>
+               <div className="cart">
+                <Numbercounter  />
                </div>
                <div className="productPrice">
                    ${state.productPrice}

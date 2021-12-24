@@ -2,6 +2,9 @@ import React from "react"
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import IconButton from '@mui/material/IconButton';
+import Badge from '@mui/material/Badge';
 
 function Navbar() {
     
@@ -44,6 +47,12 @@ function Navbar() {
         </li>
       </ul>
     </div>
+    
+    <IconButton color="inherit">
+                      <Badge badgeContent={5} color="secondary">
+                      <ShoppingCartIcon />
+                      </Badge>
+                  </IconButton>
   </div>
 </nav>    
     </div>

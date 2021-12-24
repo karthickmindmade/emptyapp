@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import Button from "./components/Button";
+
 
 import "./css/style.css";
 
@@ -37,22 +37,23 @@ export default class Numbercounter extends Component {
     
    
     return (
-      <div>
+      <div className="counter-body">
         
-      <div className="app">
     
-        <div>
-          <div className="count">
-            <h3>Count:</h3>
+    
+       
+         
+            
+            
+        
+         
+            <button className="cart-btn" title={"-"} onClick={this.decrementCount}>-</button>
             <h1>{count}</h1>
-          </div>
-          <div className="buttons">
-            <Button title={"-"} action={this.decrementCount} />
-            <Button title={"+"} action={this.incrementCount} />
-          </div>
-        </div>
+            <button  className="cart-btn" title={"+"} onClick={this.incrementCount}>+</button>
+         
+       
       
-      </div>
+    
       </div>
     );
   }

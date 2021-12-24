@@ -100,6 +100,10 @@ overflow: hidden !important;
 }
 .margin {
     margin-top: 55px !important;
+    overflow: hidden;
+}
+div#v-pills-tabContent {
+    width: 100%;
 }
 .products-body.row {
     padding: 31px;
@@ -114,12 +118,23 @@ overflow: hidden !important;
         flex: 0 0 !important;
    
 }
+.category-btn svg {
+    
+    color: #0d6efd;
+    font-size: 15px;
+    margin: 0px 4px;
+}
 .productCard {
     background-color: #ffffff;
     border-radius: 10px;
     padding: 10px;
-}
 
+}
+.btn-none{
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0px !important;
+}
 .product-price {
     position: absolute;
     color: #0d6efd;
@@ -150,9 +165,28 @@ select.product-catg {
     border: none;
     background-color: #ffffff;
 }
+button.cart-btn {
+    background-color: #0d6efd24;
+    padding: 0px 12px;
+    border-radius: 97px;
+    margin: 0px 4px;
+    /* border: 1px solid gray; */
+    border: none;
+}
+.counter-body h1 {
+    font-size: 24px;
+    padding: 0px 10px;
+    margin: 3px 0px;
+    border: 1px solid #80808059;
+    /* background-color: #0d6efd2e; */
+}
+.counter-body {
+    display: flex;
+    margin: 28px 0px 4px 0px;
+}
 .category-btn {
-    font-weight: 700;
-    font-size: 12px;
+    font-weight: 600;
+    font-size: 14px;
     color: #0d6efd;
     font-family: revert;
     text-transform: uppercase;
@@ -161,12 +195,14 @@ select.product-catg {
     float: right;
     margin: -9px 1px;
 }
+
 .product-details-body {
     display: flex;
 }
 .product-tab {
     width: 161px;
-    padding: 40px 4px;
+    padding: 40px 3px;
+    margin: 10px -4px 2px 10px;
 }
 .left-img img {
     width: 430px;

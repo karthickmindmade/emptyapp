@@ -4,9 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import ProductLayout from "./components/productLayout";
 import { useNavigate } from "react-router-dom"
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCaretDown ,faCaretRight } from '@fortawesome/free-solid-svg-icons'
 function Products() {
-   
+    const [show, setShow] = React.useState(false);
+    const [show2, setShow2] = React.useState(false);
     const navigate = useNavigate();
     var[search,setSearch] = useState('');
   var[selectedValue] = useState('');
@@ -32,15 +34,21 @@ var[productsList,setProductsList] = useState([]);
 
     }
     
-   
+    const handleClick = () => {
+        setShow(!show);
+      };
+      const handleClick2 = () => {
+        setShow2(!show2);
+      };
+    
     return (
         <div className="margin">
             <div class="d-flex align-items-start">
   <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
  <div class="product-tab" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
-        <div class="category-btn" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-          choose an category
-         </div>
+        <button  class="category-btn btn-none" data-bs-toggle="collapse" href="#collapseExample" onClick={handleClick}  aria-expanded="false" aria-controls="collapseExample">
+         Category{show ? <FontAwesomeIcon icon={faCaretDown} /> : <FontAwesomeIcon icon={faCaretRight} />}
+         </button>
            <div class="collapse" id="collapseExample">
            <div class="sub-category">
              <select className="product-catg" type="text" value={search} onChange={(e)=>setSearch(e.target.value)} multiple>
@@ -52,18 +60,18 @@ var[productsList,setProductsList] = useState([]);
             </select>
          </div>
         </div>
-        <div class="category-btn" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
-         rating
-         </div>
+        <button  class="category-btn btn-none" data-bs-toggle="collapse" href="#collapseExample2" onClick={handleClick2}  aria-expanded="false" aria-controls="collapseExample2">
+         Rating{show2 ? <FontAwesomeIcon icon={faCaretDown} /> : <FontAwesomeIcon icon={faCaretRight} />}
+         </button>
            <div class="collapse" id="collapseExample2">
            <div class="sub-category">
              <select className="product-catg" type="text" value={search} onChange={(e)=>setSearch(e.target.value)} multiple>
-                <option value="">All</option>
-                <option value="4.">between 4.0 to 4.9</option>
-                <option value="3.">between 3.0 to 3.9</option>
-                <option value="2.">between 2.0 to 2.9</option>
-                <option value="1.">between 1.0 to 1.9</option>
-            </select>
+                <option type="checkbox" value="">All</option>
+                <option type="checkbox" value="4.">between 4.0 to 4.9</option>
+                <option type="checkbox" value="3.">between 3.0 to 3.9</option>
+                <option type="checkbox" value="2.">between 2.0 to 2.9</option>
+                <option type="checkbox" value="1.">between 1.0 to 1.9</option>
+             </select>
          </div>
      </div>
    </div>
