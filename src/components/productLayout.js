@@ -21,6 +21,7 @@ function ProductLayout(props) {
                         activeColor="rgb(13 110 253)"
                         
               />
+              <div className="start-rating">{props.productrating}</div>
             </div>
             <div className="product-img">
               {props.productimg}
