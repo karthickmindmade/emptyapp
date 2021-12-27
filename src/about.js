@@ -1,17 +1,17 @@
-import React from "react"
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 
-function About() {
-    
-   
+import React from 'react';
 
-    return (
-        <div className="margin">
-     About
+const About = () => {
+  
+  return (
+    <div className="app margin">
+   
     </div>
-    );
-}
+  );
+};
 
 export default About;

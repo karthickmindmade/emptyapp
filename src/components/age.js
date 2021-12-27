@@ -4,7 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 
-function Age({byear,bmonth,BDay}) {
+function Age( props) {
+    const {byear,bmonth,BDay}=props;
     const[agemonth,setAgemonth]=useState(0)
     const[ageyear,setAgeyear]=useState(0)
     const[ageday,setAgeday]=useState(0)
@@ -25,7 +26,7 @@ function Age({byear,bmonth,BDay}) {
   
     return (
         <div>
-           
+           <button onClick={props.karthickclick}>hello</button>
             <button className="dfb-btn" onClick={handleClick}>get</button>
             <div className="age"><br/><br />{ageyear}years  {agemonth}months {ageday}days  old</div>
     </div>

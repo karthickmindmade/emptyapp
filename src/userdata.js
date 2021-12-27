@@ -53,7 +53,7 @@ function handleSelect(){
                         </div>
 
                     {item.map((items,k)=>
-                      <a href="/userdata" onClick={handleSelect}>
+                      <a href="/userdata" onClick={handleSelect(items)}>
                          <div key={k} className="row ps-5 d-flex bg-light users" >
                               
                                 <div className="col mt-4"> {items.id}</div>

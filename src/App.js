@@ -11,11 +11,11 @@ import Products from "./products";
 import Productdetails from "./productdetails";
 import Nofound from "./components/nofound";
 
-function App() {
+function App({count}) {
     
     return (
      <div>
-         <Navbar />
+         <Navbar counter={count} />
         <Routes>
            <Route path="/" element={<Homepage />} />
            <Route path="about" element={<About />} />
@@ -26,6 +26,7 @@ function App() {
            <Route path="products" element={<Products />} />
            <Route path="productdetails" element={<Productdetails />} />
            <Route path="*" element={<Nofound />} />
+           <Route path="./counter" element={<Numbercounter />} />
         </Routes>
       </div>
   

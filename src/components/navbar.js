@@ -6,7 +6,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 
-function Navbar() {
+function Navbar(props) {
     
   
   
@@ -49,7 +49,7 @@ function Navbar() {
     </div>
     
     <IconButton color="inherit">
-                      <Badge badgeContent={5} color="secondary">
+                      <Badge badgeContent={props.counter} color="secondary">
                       <ShoppingCartIcon />
                       </Badge>
                   </IconButton>
