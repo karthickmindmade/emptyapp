@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
 import ReactPaginate from 'react-paginate';
-
+import { useNavigate } from "react-router-dom"
 import 'react-tabs/style/react-tabs.css';
 
 //import { useNavigate } from "react-router-dom";
@@ -12,9 +12,21 @@ export default function Apidata() {
  
   var[selectedValue] = useState('');
   console.log(selectedValue)
-    var[item,setItem] = useState([]);
-   
-   
+    var[items,setItem] = useState([]);
+    var[search,setsearch] = useState();
+    const navigate = useNavigate();
+    function handleSelect(items){
+      navigate('/userdetails', {
+        state: {
+         itemid: items.id,
+         itemsfirstname: items.first_name,
+         itemslastname: items.last_name, 
+          itemsemail: items.email,
+          itemsavatar: items.avatar
+        }
+      })
+    }
+   search=""
      
  useEffect(() =>{
      
@@ -32,9 +44,7 @@ export default function Apidata() {
       .then(res => setItem(res.data)); 
   };
 
-function handleSelect(){
 
-}
 
   return (
       <div className="margin">
@@ -52,8 +62,17 @@ function handleSelect(){
                             <div className="col"><b>AVATAR</b></div>
                         </div>
 
-                    {item.map((items,k)=>
-                      <a href="/userdata" onClick={handleSelect(items)}>
+                        {items.filter(val => {
+                  if (search === "") {
+                    return val;
+                  } else if (
+                    val.first_name.toLowerCase().includes(search.toLowerCase()) ||
+                    val.email.toLowerCase().includes(search.toLowerCase())
+                  ) {
+                    return val;
+                  }
+                }).map((items,k)=>
+                      <a  onClick={handleSelect(items)} >
                          <div key={k} className="row ps-5 d-flex bg-light users" >
                               
                                 <div className="col mt-4"> {items.id}</div>

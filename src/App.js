@@ -10,27 +10,29 @@ import Navbar from "./components/navbar";
 import Products from "./products";
 import Productdetails from "./productdetails";
 import Nofound from "./components/nofound";
+import Userdetails from "./userdetails";
 
-function App({count}) {
-    
-    return (
-     <div>
-         <Navbar counter={count} />
-        <Routes>
-           <Route path="/" element={<Homepage />} />
-           <Route path="about" element={<About />} />
-           <Route path="blogs" element={<Blog />} />
-           <Route path="counter" element={<Numbercounter />} />
-           <Route path="userdata" element={<Apidata />} />
-           <Route path="mm" element={<About2 />} />
-           <Route path="products" element={<Products />} />
-           <Route path="productdetails" element={<Productdetails />} />
-           <Route path="*" element={<Nofound />} />
-           <Route path="./counter" element={<Numbercounter />} />
-        </Routes>
-      </div>
-  
-    );
+function App() {
+
+  return (
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="about" element={<About />} />
+        <Route path="blogs" element={<Blog />} />
+        <Route path="counter" element={<Numbercounter />} />
+        <Route path="userdata" element={<Apidata />} />
+        <Route path="mm" element={<About2 />} />
+        <Route path="products" element={<Products />} />
+        <Route path="productdetails" element={<Productdetails />} />
+        <Route path="*" element={<Nofound />} />
+        <Route path="./counter" element={<Numbercounter />} />
+        <Route path="userdetails" element={<Userdetails />} />
+      </Routes>
+    </div>
+
+  );
 }
 
 export default App;
