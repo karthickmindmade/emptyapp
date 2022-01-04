@@ -6,12 +6,8 @@ import "./css/style.css";
 import { useLocation } from "react-router-dom"
 import Numbercounter from "./counter";
 import Navbar from "./components/navbar";
-
-
-
 function Productdetails() {
   const [count, setCount] = useState(0)
-
   const incrementCount = () => {
     setCount(count + 1);
   };
@@ -46,7 +42,6 @@ function Productdetails() {
                   value={state.productRate}
                   size={30}
                   activeColor="rgb(13 110 253)"
-
                 />
               </div>
               <div className="cart">
