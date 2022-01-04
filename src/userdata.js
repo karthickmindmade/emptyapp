@@ -15,19 +15,11 @@ export default function Apidata() {
   var [profilelname, setProfilelname] = useState();
   var [profilelemail, setProfilelemail] = useState();
   var [profilelAvatar, setProfilelAvatar] = useState();
+  const [activeTab, setActiveTab] = useState("tab1");
+  const[displaydetails,SetDisplaydetails]=useState(false)
   var [search, setsearch] = useState();
-
   var [items, setItem] = useState([]);
   var [search, setsearch] = useState();
-
-  function SelectProfile(items) {
-
-    setProfileid(items.id)
-    setProfilename(items.first_name)
-    setProfilelname(items.last_name)
-    setProfilelemail(items.email)
-    setProfilelAvatar(items.avatar)
-  }
   search = ""
   useEffect(() => {
     fetch(`https://reqres.in/api/users`)
@@ -40,27 +32,40 @@ export default function Apidata() {
       .then(res => res.json())
       .then(res => setItem(res.data));
   };
+
+  
+  const handleTab1 = () => {
+      setActiveTab("tab1");
+  };
+  const handleTab2 = () => {
+    setActiveTab("tab2");
+  };
+  function SelectProfile(items) {
+    setActiveTab("tab2");
+    setProfileid(items.id)
+    setProfilename(items.first_name)
+    setProfilelname(items.last_name)
+    setProfilelemail(items.email)
+    setProfilelAvatar(items.avatar)
+    SetDisplaydetails(true)
+  }
   return (
-    <div className="margin">
-      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
-        </li>
-      </ul>
-      <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">  <div className="container">
-          <div className="tabs" defaultIndex={0} >
-            <div>
+    <div className="container margin">
+      <ul className="nav">
+                <li  onClick={handleTab1} className={activeTab === "tab1" ? "activetab tabbtn" : "inactivetab tabbtn"}  >USER LIST</li>
+                <li onClick={handleTab2} className={activeTab === "tab2" ? "activetab tabbtn" : "inactivetab tabbtn"} >USER DETAILS</li>
+            </ul>
+     
+       <div>
+     {activeTab === "tab1" ?
+           <div>
               <div className="row ps-4 d-flex bg-primary text-white border-white">
                 <div className="col ms-3"><b>ID</b></div>
                 <div className="col me-5"><b>FIRST NAME</b></div>
                 <div className="col me-5"><b>LAST NAME</b></div>
                 <div className="col me-5"><b>EMAIL ID</b></div>
                 <div className="col"><b>AVATAR</b></div>
-              </div>
+              </div>           
               {items.filter(val => {
                 if (search === "") {
                   return val;
@@ -70,17 +75,18 @@ export default function Apidata() {
                 ) {
                   return val;
                 }
-              }).map((items) =>
-                <div className="row d-flex" onClick={() => SelectProfile(items)}  >
-                 
-                        <div className="col mt-4"> {items.id}</div>
-                        <div className="col mt-4"> {items.first_name}</div>
-                        <div className="col mt-4"> {items.last_name}</div>
-                        <div className="col mt-4"> {items.email}</div>
-                        <div className="col"><img src={items.avatar} className="rounded-circle w-50 h-65 ms-4" alt="avatar" /></div>
-                     
-                </div>
-              )}
+              }).map((items) =>    
+                <a className="row d-flex" onClick={() => SelectProfile(items)}  >
+                  <div className="col mt-4"> {items.id}</div>
+                  <div className="col mt-4"> {items.first_name}</div>
+                  <div className="col mt-4"> {items.last_name}</div>
+                  <div className="col mt-4"> {items.email}</div>
+                  <div className="col"><img src={items.avatar} className="rounded-circle w-50 h-65 ms-4" alt="avatar" /></div>
+                </a>
+             
+   
+       
+              )}           
               < ReactPaginate
                 previousLabel={""}
                 nextLabel={""}
@@ -91,24 +97,48 @@ export default function Apidata() {
                 pageLinkClassName={"page-link"}
                 activeClassName={"active"}
               />
-            </div>
-            <div>
-            </div>
-          </div>
-        </div></div>
-        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-
+          </div>:           
           <div className="">
-            <div className="text-center">{profileid}</div>
-            <div className="text-center">{profilename}</div>
-            <div className="text-center">{profilelname}</div>
-            <div className="text-center">{profilelemail}</div>
-            <div className="text-center"><img src={profilelAvatar} /></div>
-          </div>
+            {displaydetails===true ?
+            <div className="">
+            <div className="profile-list">
+              <div className="profile-label">id:</div>
+              <div className=""> {profileid}
+              </div>
 
-        </div>
-      </div>
-    </div>
+            </div>
+            <div className="profile-list">
+              <div className="profile-label">First Name:</div>
+              <div className=""> {profilename}
+              </div>
+
+            </div>
+            <div className="profile-list">
+              <div className="profile-label">Last Name:</div>
+              <div className="">{profilelname}
+              </div>
+            </div>
+            <div className="profile-list">
+              <div className="profile-label">Email:</div>
+              <div className=""> {profilelemail}
+              </div>
+
+            </div>
+            <div className="profile-list">
+              <div className="profile-label">Profile:</div>
+              <div className=""><img src={profilelAvatar} />
+              </div>
+
+            </div>
+            </div>:"No result"
+}
+          </div>
+          }
+          </div>
+</div>
+       
+     
+  
   );
 }
 
