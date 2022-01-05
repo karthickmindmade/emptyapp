@@ -53,9 +53,10 @@ overflow: hidden !important;
     background-color: white;
     color: #0d6efd;
 }
-.tabbtn{
+.tabbtn {
     padding: 8px 10px;
     margin: 2px 2px;
+    cursor: pointer;
 }
 .app .buttons button {
     width: 7rem;
@@ -282,6 +283,13 @@ button.cart-btn {
 .navbar-toggler:focus {
     
     box-shadow: none !important;
+}
+.user-details:hover {
+    background-color: #0d6efd36;
+}
+.user-details:active {
+    background-color: #0d6efd;
+    color: white;
 }
 .navbar-toggler{
     border: none;

@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactStars from "react-rating-stars-component";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import "./css/style.css";
 import { useLocation } from "react-router-dom"
 import Numbercounter from "./counter";
-import Navbar from "./components/navbar";
+
 function Productdetails() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(JSON.parse(window.localStorage.getItem('count')));
   const incrementCount = () => {
     setCount(count + 1);
   };
@@ -21,9 +21,11 @@ function Productdetails() {
     }
   }
   const { state } = useLocation()
+  useEffect(() => {
+    window.localStorage.setItem('count', count);
+  }, [count]);
   return (
     <div>
-      <Navbar counter={count} />
       <div className="margin product-details">
         <div className="product-details-body">
           <div className="left-body">
@@ -49,7 +51,6 @@ function Productdetails() {
               </div>
               <div className="productPrice">
                 ${state.productPrice}
-
               </div>
               <div className="productDescription">
                 <span>Description:</span><br />

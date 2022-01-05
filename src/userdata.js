@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import ReactPaginate from 'react-paginate';
-import { useNavigate } from "react-router-dom"
-import 'react-tabs/style/react-tabs.css';
-import Userdetails from "./userdetails";
 
-//import { useNavigate } from "react-router-dom";
+import 'react-tabs/style/react-tabs.css';
+
+
+
 
 
 
@@ -19,7 +19,7 @@ export default function Apidata() {
   const[displaydetails,SetDisplaydetails]=useState(false)
   var [search, setsearch] = useState();
   var [items, setItem] = useState([]);
-  var [search, setsearch] = useState();
+  
   search = ""
   useEffect(() => {
     fetch(`https://reqres.in/api/users`)
@@ -76,7 +76,7 @@ export default function Apidata() {
                   return val;
                 }
               }).map((items) =>    
-                <a className="row d-flex" onClick={() => SelectProfile(items)}  >
+                <a  className="row d-flex user-details" onClick={() => SelectProfile(items)}  >
                   <div className="col mt-4"> {items.id}</div>
                   <div className="col mt-4"> {items.first_name}</div>
                   <div className="col mt-4"> {items.last_name}</div>
@@ -126,7 +126,7 @@ export default function Apidata() {
             </div>
             <div className="profile-list">
               <div className="profile-label">Profile:</div>
-              <div className=""><img src={profilelAvatar} />
+              <div className=""><img alt="avatar" src={profilelAvatar} />
               </div>
 
             </div>
