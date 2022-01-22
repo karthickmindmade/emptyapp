@@ -10,6 +10,10 @@ function Navbar(props) {
   useEffect(()=>{
     setCount(window.localStorage.getItem('count'))
   })
+  const [opencart,setopencart]=useState()
+const cart=()=>{
+  setopencart(!opencart)
+}
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light text-white bg-primary fixed-top">
@@ -44,11 +48,19 @@ function Navbar(props) {
               </li>
             </ul>
           </div>
-          <IconButton color="inherit">
+          <IconButton color="inherit" onClick={cart}>
             <Badge badgeContent={count} color="secondary">
               <ShoppingCartIcon />
             </Badge>
           </IconButton>
+          {opencart ? <div className="cart-dialog">
+            <div className="cart-body">
+              cart function
+
+            </div>
+
+          </div>:<></>}
+         
         </div>
       </nav>
     </div>

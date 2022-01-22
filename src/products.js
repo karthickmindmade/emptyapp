@@ -18,14 +18,9 @@ function Products() {
   const [sortdata, setsortdata] = useState([])
   console.log(selectedValue)
   var [productsList, setProductsList] = useState([]);
-
   useEffect(() => {
     Axios.get("https://fakestoreapi.com/products").then(res => {
       setProductsList(res.data);
-     
-      //setTotalUsers(res.data.total);
-    
-
     });
     if (sort === "sortZtoA") {
       setsortdata([...productsList].sort((a, b) => (a.title > b.title) ? -1 : 1))

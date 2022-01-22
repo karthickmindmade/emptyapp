@@ -362,3 +362,13 @@ div#navbarNavDropdown {
 .flex{
     display: flex;
 }
+.cart-dialog {
+    position: absolute;
+    top: 55px;
+    right: 48px;
+    height: 42vh;
+    z-index: 99;
+    width: 249px;
+    background-color: black;
+    /* color: black; */
+}
