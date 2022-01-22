@@ -359,3 +359,6 @@ div#navbarNavDropdown {
         padding: 29px 0px;
     }
   }
+.flex{
+    display: flex;
+}

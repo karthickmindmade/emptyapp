@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactPaginate from 'react-paginate';
-
 import 'react-tabs/style/react-tabs.css';
-
-
-
-
-
-
 export default function Apidata() {
-
   var [profileid, setProfileid] = useState();
   var [profilename, setProfilename] = useState();
   var [profilelname, setProfilelname] = useState();
@@ -19,7 +11,6 @@ export default function Apidata() {
   const[displaydetails,SetDisplaydetails]=useState(false)
   var [search, setsearch] = useState();
   var [items, setItem] = useState([]);
-  
   search = ""
   useEffect(() => {
     fetch(`https://reqres.in/api/users`)
@@ -32,8 +23,6 @@ export default function Apidata() {
       .then(res => res.json())
       .then(res => setItem(res.data));
   };
-
-  
   const handleTab1 = () => {
       setActiveTab("tab1");
   };
@@ -55,7 +44,6 @@ export default function Apidata() {
                 <li  onClick={handleTab1} className={activeTab === "tab1" ? "activetab tabbtn" : "inactivetab tabbtn"}  >USER LIST</li>
                 <li onClick={handleTab2} className={activeTab === "tab2" ? "activetab tabbtn" : "inactivetab tabbtn"} >USER DETAILS</li>
             </ul>
-     
        <div>
      {activeTab === "tab1" ?
            <div>
@@ -83,9 +71,6 @@ export default function Apidata() {
                   <div className="col mt-4"> {items.email}</div>
                   <div className="col"><img src={items.avatar} className="rounded-circle w-50 h-65 ms-4" alt="avatar" /></div>
                 </a>
-             
-   
-       
               )}           
               < ReactPaginate
                 previousLabel={""}
@@ -101,44 +86,26 @@ export default function Apidata() {
           <div className="">
             {displaydetails===true ?
             <div className="">
-            <div className="profile-list">
-              <div className="profile-label">id:</div>
-              <div className=""> {profileid}
-              </div>
 
-            </div>
-            <div className="profile-list">
-              <div className="profile-label">First Name:</div>
-              <div className=""> {profilename}
-              </div>
-
-            </div>
-            <div className="profile-list">
-              <div className="profile-label">Last Name:</div>
-              <div className="">{profilelname}
-              </div>
-            </div>
-            <div className="profile-list">
-              <div className="profile-label">Email:</div>
-              <div className=""> {profilelemail}
-              </div>
-
-            </div>
-            <div className="profile-list">
-              <div className="profile-label">Profile:</div>
-              <div className=""><img alt="avatar" src={profilelAvatar} />
-              </div>
-
-            </div>
+<div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+    <div class="card p-4">
+        <div class=" image d-flex flex-column justify-content-center align-items-center"> <button class="btn btn-secondary"> <img src={profilelAvatar} height="100" width="100" /></button> <span class="name mt-3">{profilename}</span> <span class="idd">{profilelname}</span>
+            <div class="d-flex flex-row justify-content-center align-items-center gap-2"> <span class="idd1">{profileid}</span> <span><i class="fa fa-copy"></i></span> </div>
+            <div class="d-flex flex-row justify-content-center align-items-center mt-3"> <span class="number">1069 <span class="follow">{profilelemail}</span></span> </div>
+            <div class=" d-flex mt-2"> <button class="btn1 btn-dark">Edit Profile</button> </div>
+            <div class="text mt-3"> <span>{profilelemail}</span> </div>
+            <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center"> <span><i class="fa fa-twitter"></i></span> <span><i class="fa fa-facebook-f"></i></span> <span><i class="fa fa-instagram"></i></span> <span><i class="fa fa-linkedin"></i></span> </div>
+            <div class=" px-2 rounded mt-4 date "> <span class="join">Joined May,2021</span> </div>
+        </div>
+    </div>
+</div>
+         
             </div>:"No result"
 }
           </div>
           }
           </div>
 </div>
-       
-     
-  
   );
 }
 

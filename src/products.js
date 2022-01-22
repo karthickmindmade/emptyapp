@@ -14,12 +14,30 @@ function Products() {
   var [selectedValue] = useState('');
   console.log(selectedValue)
   var [productsList, setProductsList] = useState([]);
+
   useEffect(() => {
     Axios.get("https://fakestoreapi.com/products").then(res => {
       setProductsList(res.data);
+      
       //setTotalUsers(res.data.total);
+      if (sort === "sortZtoA") {
+        setsortdata([...productsList].sort((a, b) => (a.title > b.title) ? -1 : 1))
+      } else if (sort === "sortAtoZ") {
+        setsortdata([...productsList].sort((a, b) => (a.title < b.title) ? 0 : 1))
+  
+      }else if (sortprice==="sortLtoH"){
+        setsortdata([...productsList].sort((a,b)=>(parseFloat(a.price) - parseFloat(b.price))))
+  
+      }else if (sortprice==="sortHtoL"){
+        setsortdata([...productsList].sort((a,b)=>(parseFloat(b.price) - parseFloat(a.price))))
+  
+      }else {setsortdata(res.data)}
+
     });
-  }, []);
+    
+
+
+  });
   const ProductClick = (productsList) => {
     navigate('/productdetails', {
       state: {
@@ -39,6 +57,15 @@ function Products() {
   const handleClick2 = () => {
     setShow2(!show2);
   };
+  const [sortdata, setsortdata] = useState([])
+
+
+
+  const [sort, setsort] = useState()
+const [sortprice,setsortprice]=useState()
+
+  console.log(sort)
+
   return (
     <div className="margin ">
       <div class="d-flex align-items-start ">
@@ -73,6 +100,32 @@ function Products() {
                   </select>
                 </div>
               </div>
+              <div className="flex">
+                <div className=""> 
+                  Sort by Z to A
+                </div>
+                
+                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="sortZtoA" onChange={(e) => setsort(e.target.value)} />
+              </div>
+              <br />
+              <div className="flex">
+                <div className="">
+                  Sort by A to Z
+                </div>
+                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="sortAtoZ" onChange={(e) => setsort(e.target.value)} />
+              </div>
+              <div className="flex">
+                <div className="">
+                  Sort by low to high
+                </div>
+                <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault2" value="sortLtoH" onChange={(e) => setsortprice(e.target.value)} />
+              </div>
+              <div className="flex">
+                <div className="">
+                  Sort by high to low
+                </div>
+                <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault2" value="sortHtoL" onChange={(e) => setsortprice(e.target.value)} />
+              </div>
             </div>
           </div>
         </div>
@@ -80,7 +133,7 @@ function Products() {
           <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
             <div>
               <div className="products-body row">
-                {productsList.filter(val => {
+                {sortdata.filter(val => {
                   if (search === "") {
                     return val;
                   } else if (

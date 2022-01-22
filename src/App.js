@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Routes, Route } from "react-router-dom";
 import Homepage from "./homepage"
 import About from "./about"
@@ -13,7 +13,10 @@ import Nofound from "./components/nofound";
 import Userdetails from "./userdetails";
 
 function App() {
-
+  const countcallback = (childData) => {
+    setCount(childData)
+  }
+  const [count, setCount] = useState();
   return (
     <div>
       <Navbar />
@@ -25,7 +28,7 @@ function App() {
         <Route path="userdata" element={<Apidata />} />
         <Route path="mm" element={<About2 />} />
         <Route path="products" element={<Products />} />
-        <Route path="productdetails" element={<Productdetails />} />
+        <Route path="productdetails" element={<Productdetails callcount={countcallback} />} />
         <Route path="*" element={<Nofound />} />
         <Route path="./counter" element={<Numbercounter />} />
         <Route path="userdetails" element={<Userdetails />} />

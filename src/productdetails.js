@@ -6,7 +6,8 @@ import "./css/style.css";
 import { useLocation } from "react-router-dom"
 import Numbercounter from "./counter";
 
-function Productdetails() {
+
+function Productdetails(props) {
   const [count, setCount] = useState(JSON.parse(window.localStorage.getItem('count')));
   const incrementCount = () => {
     setCount(count + 1);
@@ -23,6 +24,7 @@ function Productdetails() {
   const { state } = useLocation()
   useEffect(() => {
     window.localStorage.setItem('count', count);
+    props.callcount(count)
   }, [count]);
   return (
     <div>
