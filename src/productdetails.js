@@ -26,37 +26,9 @@ function Productdetails(props) {
     window.localStorage.setItem('count', count);
     props.callcount(count)
   }, [count]);
-  const [value, setValue] = useState([]);
-  const [getstore,setgetstore]=useState([])
-  const quotes = [
-    {text: 'Whatever the mind of man can conceive and believe, it can achieve.',
-    author: 'Napoleon Hill'},
-    {text: 'Strive not to be a success, but rather to be of value.',
-    author: 'Albert Einstein'},
-    {text: 'I attribute my success to this: I never gave or took any excuse.',
-    author: 'Florence Nightingale'},
-    {text: 'You miss 100% of the shots you don’t take.',
-    author: 'Wayne Gretzky'}
-  ];
-  const quotes2 = [
-    {text: 'fuck u da badu',
-    author: 'karthick raja'}
-  ];
- const [newvalue,setnewvalue]=useState([])
-
- function store(){
-  window.localStorage.setItem('store', JSON.stringify( [...quotes, {text: 'karthick is good boy',
-    author: 'karthick raja'}]));
-}
-
-  useState(()=>{
-  
-    setgetstore(window.localStorage.getItem('store'))
-    setnewvalue()
-  },[getstore])
-console.log(getstore)
-  
-console.log(newvalue)
+ 
+ 
+ 
   return (
     <div>
       <div className="margin product-details">
@@ -81,7 +53,7 @@ console.log(newvalue)
               </div>
               <div className="cart">
                 <Numbercounter lessbutton={decrementCount} plusbutton={incrementCount} counter={count} />
-                <button onClick={store}>store</button>
+               
               </div>
               <div className="productPrice">
                 ${state.productPrice}

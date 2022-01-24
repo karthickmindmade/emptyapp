@@ -6,14 +6,17 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 function Navbar(props) {
+  const{productlist}=props
   const [count, setCount] = useState();
-  useEffect(()=>{
-    setCount(window.localStorage.getItem('count'))
-  })
+ 
   const [opencart,setopencart]=useState()
 const cart=()=>{
   setopencart(!opencart)
 }
+useEffect(()=>{
+  setCount(productlist.length)
+})
+console.log(productlist)
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light text-white bg-primary fixed-top">
@@ -55,7 +58,15 @@ const cart=()=>{
           </IconButton>
           {opencart ? <div className="cart-dialog">
             <div className="cart-body">
-              cart function
+            {productlist.map((product)=>
+            <div className='colorlist'>
+            <div className='flex' key={product.id}>
+                
+                <div ><img src={product.imgurl} alt="avatar" width={40} /></div>
+                <div className="cartproduct-title">{product.title}</div>
+            </div>
+            </div>
+          )}
 
             </div>
 

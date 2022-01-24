@@ -6,7 +6,7 @@ import ProductLayout from "./components/productLayout";
 import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons'
-function Products() {
+function Products(props) {
   const [show, setShow] = React.useState(false);
   const [show2, setShow2] = React.useState(false);
   const navigate = useNavigate();
@@ -18,10 +18,34 @@ function Products() {
   const [sortdata, setsortdata] = useState([])
   console.log(selectedValue)
   var [productsList, setProductsList] = useState([]);
+  const [value, setValue] = useState([
+    {
+      id:1,
+      imgurl: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+      title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops'
+    }
+
+  ]);
+ 
+
+  function store(productsList){
+    
+    setValue([...value,{
+      id: productsList.id,
+      imgurl: productsList.image,
+      title: productsList.title
+    }])
+  }
+useEffect(()=>{
+  props.cartproductlist(value)
+},[value])
+
+  
   useEffect(() => {
     Axios.get("https://fakestoreapi.com/products").then(res => {
       setProductsList(res.data);
     });
+    
     if (sort === "sortZtoA") {
       setsortdata([...productsList].sort((a, b) => (a.title > b.title) ? -1 : 1))
     } else if (sort === "sortAtoZ") {
@@ -38,8 +62,10 @@ function Products() {
 
   }, [ sort,productsList]);
   const ProductClick = (productsList) => {
+    console.log(productsList.id)
     navigate('/productdetails', {
       state: {
+        productid:productsList.id,
         productTitle: productsList.title,
         productPrice: productsList.price,
         productDescription: productsList.description,
@@ -102,7 +128,6 @@ function Products() {
                 <div className="">
                   Sort by Z to A
                 </div>
-
                 <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="sortZtoA" onChange={(e) => setsort(e.target.value)} />
               </div>
               <br />
@@ -145,6 +170,7 @@ function Products() {
                     producttitle={productsList.title}
                     productprice={productsList.price}
                     productrating={productsList.rating.rate}
+                    onClick={() => store(productsList)}
                     productCategory={productsList.category}
                     clickfunction={() => ProductClick(productsList)}
                   />

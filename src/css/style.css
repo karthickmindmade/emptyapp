@@ -366,9 +366,16 @@ div#navbarNavDropdown {
     position: absolute;
     top: 55px;
     right: 48px;
-    height: 42vh;
+    height: 50vh;
+    overflow: auto;
     z-index: 99;
-    width: 249px;
-    background-color: black;
-    /* color: black; */
+    width: 270px;
+    background-color: #f5f7f6;
+    color: black;
+}
+.cartproduct-title{
+    font-size: 15px;
+}
+.colorlist {
+    padding: 5px 10px;
 }

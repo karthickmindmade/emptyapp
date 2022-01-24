@@ -3,11 +3,11 @@ import "./css/style.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import Age from "./components/age";
-
-
+import { useSelector, useDispatch } from 'react-redux'
+import { decrement, increment } from './components/counterSlice'
 
 function Blog() {
-
+    const dispatch = useDispatch()
     const [birthyear, setBirthYear] = useState(0)
     const [birthmonth, setBirthMonth] = useState(0)
     const [BirthDay, setBirthDay] = useState(0)
@@ -18,6 +18,10 @@ function Blog() {
  console.log("hello2")
     return (
         <div className="container margin">
+              <button
+          aria-label="Increment value"
+          onClick={() => dispatch(increment())}
+        >increment</button>
             <div className="calculator">
                 <h1>calculate your age</h1>
                 <input className="dfb" onChange={(e) => setBirthDay(e.target.value)} placeholder="d" />
