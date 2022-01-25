@@ -16,7 +16,6 @@ import store from './redux/store'
 import { Provider } from 'react-redux'
 function App() {
   const [productlist,setproductlist]=useState([])
-
   const countcallback = (childData) => {
     setCount(childData)
   }
@@ -30,8 +29,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="about" element={<About />} />
-        <Route path="blogs" element={<Blog />} />
-        <Route path="counter" element={<Numbercounter />} />
+        <Route path="blogs" element={<Blog />}/>
+        <Route path="counter" element={<Numbercounter />}/>
         <Route path="userdata" element={<Apidata />} />
         <Route path="mm" element={<About2 />} />
         <Route path="products" element={<Products cartproductlist={productlistcallback} />} />

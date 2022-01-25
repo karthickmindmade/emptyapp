@@ -78,11 +78,7 @@ function Products(props) {
   const handleClick2 = () => {
     setShow2(!show2);
   };
-
-
-
   console.log(sort)
-
   const [selectedMens, setselectedMens] = useState('');
   const [selectedJewwel, setselectedJewwel] = useState('');
   const [selectedelevtro, setselectedelevtro] = useState('');
@@ -95,7 +91,7 @@ function Products(props) {
     if (checked1 === false) {
       setselectedMens('')
     }
-    if (checked2 === false) {
+    if (checked2 === false){
       setselectedJewwel('')
     }
     if (checked3 === false) {
@@ -110,8 +106,9 @@ function Products(props) {
   const handleClick3 = () => setChecked3(!checked3)
   const handleClick4 = () => setChecked4(!checked4)
   useEffect(() => {
-    setSearch(selectedMens + selectedJewwel + selectedelevtro + selectedwomen)
+    setSearch(selectedMens+selectedJewwel+selectedelevtro+selectedwomen)
   })
+
   console.log(search)
   return (
     <div className="margin ">
@@ -124,7 +121,7 @@ function Products(props) {
               </button>
               <div class="collapse " id="collapseExample">
                 <div class="sub-category ">
-                  <ul >
+                  <ul>
                     <li className='flex'><div class="">men's clothing</div><input className="form-check-input" onClick={handleClick1} checked={checked1} type="checkbox" value="men's clothing" onChange={(e) => setselectedMens(e.target.value)} /></li>
                     <li className='flex'><div class="">jewelery</div><input className="form-check-input" onClick={handleClick21} checked={checked2} type="checkbox" value="jewelery" onChange={(e) => setselectedJewwel(e.target.value)} /></li>
                     <li className='flex'><div class="">electronics</div><input className="form-check-input" onClick={handleClick3} checked={checked3} type="checkbox" value="electronics" onChange={(e) => setselectedelevtro(e.target.value)} /></li>
@@ -182,7 +179,7 @@ function Products(props) {
                   if (search === "" && search2 === "") {
                     return val;
                   } else if (search === "" || search2 === "") {
-                    return val.category.toLowerCase().includes(search.toLowerCase())
+                    return val.category.toLowerCase().includes(search.toLowerCase())&&val.category.toLowerCase().includes(search.toLowerCase())
                   } else {
                     return val.category.toLowerCase().includes(search.toLowerCase()) && val.rating.rate.toString().includes(search2.toString())
                   }

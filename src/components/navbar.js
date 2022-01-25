@@ -8,7 +8,6 @@ import Badge from '@mui/material/Badge';
 function Navbar(props) {
   const{productlist}=props
   const [count, setCount] = useState();
- 
   const [opencart,setopencart]=useState()
 const cart=()=>{
   setopencart(!opencart)
@@ -17,14 +16,6 @@ useEffect(()=>{
   setCount(productlist.length)
 })
 console.log(productlist)
-const [productlist2,setproductlist2]=useState([])
-const handleRemove=(id)=>{
-  
-  var index = productlist.indexOf(id);
-  if (index > -1) {
-    setproductlist2([...productlist.splice(index, 1)]);
-  }
-}
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light text-white bg-primary fixed-top">
@@ -66,21 +57,17 @@ const handleRemove=(id)=>{
           </IconButton>
           {opencart ? <div className="cart-dialog">
             <div className="cart-body">
-            {productlist2.map((product)=>
+            {productlist.map((product)=>
             <div className='colorlist'>
-            <div className='flex' key={product.id}>
-                
+            <div className='flex' key={product.id}>              
                 <div ><img src={product.imgurl} alt="avatar" width={40} /></div>
                 <div className="cartproduct-title">{product.title}</div>
-               <button onClick={() => handleRemove(product.id)}>X</button>
+               <button>X</button>
             </div>
             </div>
           )}
-
             </div>
-
-          </div>:<></>}
-         
+          </div>:<></>}    
         </div>
       </nav>
     </div>
