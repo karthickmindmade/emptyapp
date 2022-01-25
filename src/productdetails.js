@@ -5,8 +5,6 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import "./css/style.css";
 import { useLocation } from "react-router-dom"
 import Numbercounter from "./counter";
-
-
 function Productdetails(props) {
   const [count, setCount] = useState(JSON.parse(window.localStorage.getItem('count')));
   const incrementCount = () => {
@@ -26,9 +24,6 @@ function Productdetails(props) {
     window.localStorage.setItem('count', count);
     props.callcount(count)
   }, [count]);
- 
- 
- 
   return (
     <div>
       <div className="margin product-details">
@@ -52,8 +47,7 @@ function Productdetails(props) {
                 />
               </div>
               <div className="cart">
-                <Numbercounter lessbutton={decrementCount} plusbutton={incrementCount} counter={count} />
-               
+                <Numbercounter lessbutton={decrementCount} plusbutton={incrementCount} counter={count} />        
               </div>
               <div className="productPrice">
                 ${state.productPrice}

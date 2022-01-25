@@ -14,58 +14,54 @@ function Products(props) {
   var [search2, setSearch2] = useState('');
   var [selectedValue] = useState('');
   const [sort, setsort] = useState()
-  const [sortprice, setsortprice] = useState()
   const [sortdata, setsortdata] = useState([])
   console.log(selectedValue)
   var [productsList, setProductsList] = useState([]);
   const [value, setValue] = useState([
     {
-      id:1,
+      id: 1,
       imgurl: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
       title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops'
     }
 
   ]);
- 
 
-  function store(productsList){
-    
-    setValue([...value,{
+
+  function store(productsList) {
+
+    setValue([...value, {
       id: productsList.id,
       imgurl: productsList.image,
       title: productsList.title
     }])
   }
-useEffect(()=>{
-  props.cartproductlist(value)
-},[value])
-
-  
+  useEffect(() => {
+    props.cartproductlist(value)
+  }, [value])
   useEffect(() => {
     Axios.get("https://fakestoreapi.com/products").then(res => {
       setProductsList(res.data);
     });
-    
     if (sort === "sortZtoA") {
       setsortdata([...productsList].sort((a, b) => (a.title > b.title) ? -1 : 1))
     } else if (sort === "sortAtoZ") {
       setsortdata([...productsList].sort((a, b) => (a.title < b.title) ? -1 : 1))
-        
+
     } else if (sort === "sortLtoH") {
       setsortdata([...productsList].sort((a, b) => (parseFloat(a.price) - parseFloat(b.price))))
 
     } else if (sort === "sortHtoL") {
       setsortdata([...productsList].sort((a, b) => (parseFloat(b.price) - parseFloat(a.price))))
 
-    } else  {setsortdata(productsList)}
+    } else { setsortdata(productsList) }
 
 
-  }, [ sort,productsList]);
+  }, [sort, productsList]);
   const ProductClick = (productsList) => {
     console.log(productsList.id)
     navigate('/productdetails', {
       state: {
-        productid:productsList.id,
+        productid: productsList.id,
         productTitle: productsList.title,
         productPrice: productsList.price,
         productDescription: productsList.description,
@@ -85,11 +81,38 @@ useEffect(()=>{
 
 
 
-
-
-
   console.log(sort)
 
+  const [selectedMens, setselectedMens] = useState('');
+  const [selectedJewwel, setselectedJewwel] = useState('');
+  const [selectedelevtro, setselectedelevtro] = useState('');
+  const [selectedwomen, setselectedwomen] = useState('');
+  const [checked1, setChecked1] = useState(false)
+  const [checked2, setChecked2] = useState(false)
+  const [checked3, setChecked3] = useState(false)
+  const [checked4, setChecked4] = useState(false)
+  useEffect(() => {
+    if (checked1 === false) {
+      setselectedMens('')
+    }
+    if (checked2 === false) {
+      setselectedJewwel('')
+    }
+    if (checked3 === false) {
+      setselectedelevtro('')
+    }
+    if (checked4 === false) {
+      setselectedwomen('')
+    }
+  })
+  const handleClick1 = () => setChecked1(!checked1)
+  const handleClick21 = () => setChecked2(!checked2)
+  const handleClick3 = () => setChecked3(!checked3)
+  const handleClick4 = () => setChecked4(!checked4)
+  useEffect(() => {
+    setSearch(selectedMens + selectedJewwel + selectedelevtro + selectedwomen)
+  })
+  console.log(search)
   return (
     <div className="margin ">
       <div class="d-flex align-items-start ">
@@ -97,17 +120,16 @@ useEffect(()=>{
           <div className="left-siedebar">
             <div class="product-tab " id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
               <button class="category-btn btn-none" data-bs-toggle="collapse" href="#collapseExample" onClick={handleClick} aria-expanded="false" aria-controls="collapseExample">
-                Category{show ? <FontAwesomeIcon icon={faCaretDown} /> : <FontAwesomeIcon icon={faCaretRight} />}
+                Category{show ? <FontAwesomeIcon icon={faCaretDown} /> : <FontAwesomeIcon icon={faCaretRight}/>}
               </button>
               <div class="collapse " id="collapseExample">
                 <div class="sub-category ">
-                  <select className="product-catg" type="text" value={search} onChange={(e) => setSearch(e.target.value)} multiple>
-                    <option value="">All</option>
-                    <option value="men's clothing">men's clothing</option>
-                    <option value="jewelery">jewelery</option>
-                    <option value="electronics">electronics</option>
-                    <option value="women's clothing">women's clothing</option>
-                  </select>
+                  <ul >
+                    <li className='flex'><div class="">men's clothing</div><input className="form-check-input" onClick={handleClick1} checked={checked1} type="checkbox" value="men's clothing" onChange={(e) => setselectedMens(e.target.value)} /></li>
+                    <li className='flex'><div class="">jewelery</div><input className="form-check-input" onClick={handleClick21} checked={checked2} type="checkbox" value="jewelery" onChange={(e) => setselectedJewwel(e.target.value)} /></li>
+                    <li className='flex'><div class="">electronics</div><input className="form-check-input" onClick={handleClick3} checked={checked3} type="checkbox" value="electronics" onChange={(e) => setselectedelevtro(e.target.value)} /></li>
+                    <li className='flex'><div class="">women's clothing</div><input className="form-check-input" onClick={handleClick4} checked={checked4} type="checkbox" value="women's clothing" onChange={(e) => setselectedwomen(e.target.value)} /></li>
+                  </ul>
                 </div>
               </div>
               <button class="category-btn btn-none" data-bs-toggle="collapse" href="#collapseExample2" onClick={handleClick2} aria-expanded="false" aria-controls="collapseExample2">
@@ -157,12 +179,12 @@ useEffect(()=>{
             <div>
               <div className="products-body row">
                 {sortdata.filter(val => {
-                  if (search === ""&&search2===""){
+                  if (search === "" && search2 === "") {
                     return val;
-                  } else if (search === ""||search2===""){
-                    return  val.category.toLowerCase().includes(search.toLowerCase()) && val.rating.rate.toString().includes(search2.toString())
-                  } else{
-                    return  val.category.toLowerCase().includes(search.toLowerCase()) && val.rating.rate.toString().includes(search2.toString())
+                  } else if (search === "" || search2 === "") {
+                    return val.category.toLowerCase().includes(search.toLowerCase())
+                  } else {
+                    return val.category.toLowerCase().includes(search.toLowerCase()) && val.rating.rate.toString().includes(search2.toString())
                   }
                 }).map((productsList) =>
                   <ProductLayout
