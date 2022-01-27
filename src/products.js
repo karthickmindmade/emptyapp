@@ -21,18 +21,18 @@ function Products(props) {
     {
       id: 1,
       imgurl: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
-      title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops'
+      title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
+      price: '109.95'
     }
 
   ]);
-
-
   function store(productsList) {
 
     setValue([...value, {
       id: productsList.id,
       imgurl: productsList.image,
-      title: productsList.title
+      title: productsList.title,
+      price:productsList.price
     }])
   }
   useEffect(() => {
@@ -58,6 +58,7 @@ function Products(props) {
 
   }, [sort, productsList]);
   const ProductClick = (productsList) => {
+   
     console.log(productsList.id)
     navigate('/productdetails', {
       state: {
@@ -179,7 +180,7 @@ function Products(props) {
                   if (search === "" && search2 === "") {
                     return val;
                   } else if (search === "" || search2 === "") {
-                    return val.category.toLowerCase().includes(search.toLowerCase())&&val.category.toLowerCase().includes(search.toLowerCase())
+                    return val.category.toLowerCase().includes(search.toLowerCase())&&val.rating.rate.toString().includes(search2.toString())
                   } else {
                     return val.category.toLowerCase().includes(search.toLowerCase()) && val.rating.rate.toString().includes(search2.toString())
                   }

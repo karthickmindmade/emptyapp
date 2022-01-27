@@ -61,8 +61,12 @@ console.log(productlist)
             <div className='colorlist'>
             <div className='flex' key={product.id}>              
                 <div ><img src={product.imgurl} alt="avatar" width={40} /></div>
+                <div>
                 <div className="cartproduct-title">{product.title}</div>
-               <button>X</button>
+                <div>{product.price}</div>
+                </div>
+                
+               <button className="float-end">X</button>
             </div>
             </div>
           )}
