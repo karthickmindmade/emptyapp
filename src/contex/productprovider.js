@@ -20,9 +20,7 @@ export default function CounterContextProvider(props) {
         setCount(count - 1);
       }
     }
-       useEffect(() => {
-        value.filter(val => val.title.includes(title)).map((tickets) => setfiltervalue(tickets.id))
-    },[value])
+      
     function store(productsList) {
       
         settitle(productsList.title)
@@ -36,7 +34,9 @@ export default function CounterContextProvider(props) {
             }])
         } 
     }
- 
+    useEffect(() => {
+        value.filter(val => val.title.includes(title)).map((tickets) => setfiltervalue(tickets.id))
+    },[value])
     //remove product from cart
     const handleRemove = (id) => {
         const newPeople = value.filter((person) => person.id !== id);
