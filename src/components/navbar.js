@@ -10,7 +10,7 @@ import { Button } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 function Navbar() {
   
-  const { value ,handleRemove} = useContext(CounterContext);
+  const { value ,handleRemove,title} = useContext(CounterContext);
   
   const [count, setCount] = useState();
   const [opencart,setopencart]=useState()
@@ -20,7 +20,6 @@ const cart=()=>{
 useEffect(()=>{
   setCount(value.length)
 })
-
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light text-white bg-primary fixed-top">
@@ -74,7 +73,7 @@ useEffect(()=>{
                 <Button className="remove-button float-end" onClick={() => handleRemove(product.id)}><DeleteIcon /></Button>
                
             </div>
-            <div>{product.count}</div>
+            
             </div>
             </Badge>
           )}

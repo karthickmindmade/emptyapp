@@ -175,12 +175,10 @@ function Products(props) {
                       return val.rating.rate.toString().includes(search2.toString())
                     }
                   } else if (search !== "xxxxxxxx" && search2 !== "") {
-                    return val.rating.rate.toString().includes(search2.toString()) ||
-                      val.category.toLowerCase().includes(selectedMens.toLowerCase()) ||
+                    return val.category.toLowerCase().includes(selectedMens.toLowerCase()) ||
                       val.category.toLowerCase().includes(selectedJewwel.toLowerCase()) ||
                       val.category.toLowerCase().includes(selectedelevtro.toLowerCase()) ||
-                      val.category.toLowerCase().includes(selectedwomen.toLowerCase())
-                      
+                      val.category.toLowerCase().includes(selectedwomen.toLowerCase())&&val.rating.rate.toString().includes(search2.toString()) 
                   }
                 }).map((productsList) =>
                   <ProductLayout
