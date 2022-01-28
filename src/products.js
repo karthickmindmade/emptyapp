@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Axios from 'axios'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'jquery/dist/jquery.min.js'
+import 'bootstrap/dist/js/bootstrap.min.js'
 import ProductLayout from "./components/productLayout";
 import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons'
+import Alert from '@mui/material/Alert';
+import { CounterContext } from './contex/productprovider'
 function Products(props) {
+  const { store } = useContext(CounterContext);
   const [show, setShow] = React.useState(false);
   const [show2, setShow2] = React.useState(false);
   const navigate = useNavigate();
@@ -17,27 +21,8 @@ function Products(props) {
   const [sortdata, setsortdata] = useState([])
   console.log(selectedValue)
   var [productsList, setProductsList] = useState([]);
-  const [value, setValue] = useState([
-    {
-      id: 1,
-      imgurl: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
-      title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
-      price: '109.95'
-    }
 
-  ]);
-  function store(productsList) {
 
-    setValue([...value, {
-      id: productsList.id,
-      imgurl: productsList.image,
-      title: productsList.title,
-      price:productsList.price
-    }])
-  }
-  useEffect(() => {
-    props.cartproductlist(value)
-  }, [value])
   useEffect(() => {
     Axios.get("https://fakestoreapi.com/products").then(res => {
       setProductsList(res.data);
@@ -58,7 +43,7 @@ function Products(props) {
 
   }, [sort, productsList]);
   const ProductClick = (productsList) => {
-   
+
     console.log(productsList.id)
     navigate('/productdetails', {
       state: {
@@ -80,26 +65,26 @@ function Products(props) {
     setShow2(!show2);
   };
   console.log(sort)
-  const [selectedMens, setselectedMens] = useState('');
-  const [selectedJewwel, setselectedJewwel] = useState('');
-  const [selectedelevtro, setselectedelevtro] = useState('');
-  const [selectedwomen, setselectedwomen] = useState('');
+  const [selectedMens, setselectedMens] = useState('xx');
+  const [selectedJewwel, setselectedJewwel] = useState('xx');
+  const [selectedelevtro, setselectedelevtro] = useState('xx');
+  const [selectedwomen, setselectedwomen] = useState('xx');
   const [checked1, setChecked1] = useState(false)
   const [checked2, setChecked2] = useState(false)
   const [checked3, setChecked3] = useState(false)
   const [checked4, setChecked4] = useState(false)
   useEffect(() => {
     if (checked1 === false) {
-      setselectedMens('')
+      setselectedMens('xx')
     }
-    if (checked2 === false){
-      setselectedJewwel('')
+    if (checked2 === false) {
+      setselectedJewwel('xx')
     }
     if (checked3 === false) {
-      setselectedelevtro('')
+      setselectedelevtro('xx')
     }
     if (checked4 === false) {
-      setselectedwomen('')
+      setselectedwomen('xx')
     }
   })
   const handleClick1 = () => setChecked1(!checked1)
@@ -107,10 +92,11 @@ function Products(props) {
   const handleClick3 = () => setChecked3(!checked3)
   const handleClick4 = () => setChecked4(!checked4)
   useEffect(() => {
-    setSearch(selectedMens+selectedJewwel+selectedelevtro+selectedwomen)
+    setSearch(selectedMens + selectedJewwel + selectedelevtro + selectedwomen)
   })
 
-  console.log(search)
+  console.log(search2)
+
   return (
     <div className="margin ">
       <div class="d-flex align-items-start ">
@@ -118,15 +104,15 @@ function Products(props) {
           <div className="left-siedebar">
             <div class="product-tab " id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
               <button class="category-btn btn-none" data-bs-toggle="collapse" href="#collapseExample" onClick={handleClick} aria-expanded="false" aria-controls="collapseExample">
-                Category{show ? <FontAwesomeIcon icon={faCaretDown} /> : <FontAwesomeIcon icon={faCaretRight}/>}
+                Category{show ? <FontAwesomeIcon icon={faCaretDown} /> : <FontAwesomeIcon icon={faCaretRight} />}
               </button>
               <div class="collapse " id="collapseExample">
                 <div class="sub-category ">
                   <ul>
-                    <li className='flex'><div class="">men's clothing</div><input className="form-check-input" onClick={handleClick1} checked={checked1} type="checkbox" value="men's clothing" onChange={(e) => setselectedMens(e.target.value)} /></li>
-                    <li className='flex'><div class="">jewelery</div><input className="form-check-input" onClick={handleClick21} checked={checked2} type="checkbox" value="jewelery" onChange={(e) => setselectedJewwel(e.target.value)} /></li>
-                    <li className='flex'><div class="">electronics</div><input className="form-check-input" onClick={handleClick3} checked={checked3} type="checkbox" value="electronics" onChange={(e) => setselectedelevtro(e.target.value)} /></li>
-                    <li className='flex'><div class="">women's clothing</div><input className="form-check-input" onClick={handleClick4} checked={checked4} type="checkbox" value="women's clothing" onChange={(e) => setselectedwomen(e.target.value)} /></li>
+                    <li className='flex'><input className="form-check-input" onClick={handleClick1} checked={checked1} type="checkbox" value="men's clothing" onChange={(e) => setselectedMens(e.target.value)} /><div class="ms-1">men's clothing</div></li>
+                    <li className='flex'><input className="form-check-input" onClick={handleClick21} checked={checked2} type="checkbox" value="jewelery" onChange={(e) => setselectedJewwel(e.target.value)} /><div class="ms-1">jewelery</div></li>
+                    <li className='flex'><input className="form-check-input" onClick={handleClick3} checked={checked3} type="checkbox" value="electronics" onChange={(e) => setselectedelevtro(e.target.value)} /><div class="ms-1">electronics</div></li>
+                    <li className='flex'><input className="form-check-input" onClick={handleClick4} checked={checked4} type="checkbox" value="women's clothing" onChange={(e) => setselectedwomen(e.target.value)} /><div class="ms-1">women's clothing</div></li>
                   </ul>
                 </div>
               </div>
@@ -177,17 +163,30 @@ function Products(props) {
             <div>
               <div className="products-body row">
                 {sortdata.filter(val => {
-                  if (search === "" && search2 === "") {
+                  if (search === "xxxxxxxx" && search2 === "") {
                     return val;
-                  } else if (search === "" || search2 === "") {
-                    return val.category.toLowerCase().includes(search.toLowerCase())&&val.rating.rate.toString().includes(search2.toString())
-                  } else {
-                    return val.category.toLowerCase().includes(search.toLowerCase()) && val.rating.rate.toString().includes(search2.toString())
+                  } else if (search !== "xxxxxxxx" || search2 !== "") {
+                    if (search !== "xxxxxxxx") {
+                      return val.category.toLowerCase().includes(selectedMens.toLowerCase()) ||
+                        val.category.toLowerCase().includes(selectedJewwel.toLowerCase()) ||
+                        val.category.toLowerCase().includes(selectedelevtro.toLowerCase()) ||
+                        val.category.toLowerCase().includes(selectedwomen.toLowerCase())
+                    } else if (search2 !== "") {
+                      return val.rating.rate.toString().includes(search2.toString())
+                    }
+                  } else if (search !== "xxxxxxxx" && search2 !== "") {
+                    return val.rating.rate.toString().includes(search2.toString()) ||
+                      val.category.toLowerCase().includes(selectedMens.toLowerCase()) ||
+                      val.category.toLowerCase().includes(selectedJewwel.toLowerCase()) ||
+                      val.category.toLowerCase().includes(selectedelevtro.toLowerCase()) ||
+                      val.category.toLowerCase().includes(selectedwomen.toLowerCase())
+                      
                   }
                 }).map((productsList) =>
                   <ProductLayout
                     productimg={<img src={productsList.image} alt="avatar" />}
                     producttitle={productsList.title}
+                    productid={productsList.id}
                     productprice={productsList.price}
                     productrating={productsList.rating.rate}
                     onClick={() => store(productsList)}

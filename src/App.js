@@ -12,21 +12,21 @@ import Productdetails from "./productdetails";
 import Nofound from "./components/nofound";
 import Userdetails from "./userdetails";
 import ReactDOM from 'react-dom'
-import store from './redux/store'
-import { Provider } from 'react-redux'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'jquery/dist/jquery.min.js'
+import 'bootstrap/dist/js/bootstrap.min.js'
+import CounterContextProvider from './contex/productprovider';
 
 function App() {
-  const [productlist,setproductlist]=useState([])
   const countcallback = (childData) => {
     setCount(childData)
   }
-  const productlistcallback =(childData)=>{
-    setproductlist(childData)
-  }
+ 
   const [count, setCount] = useState();
   return (
-    <Provider store={store}>
-      <Navbar count={count} productlist={productlist} />
+   <div>
+      <CounterContextProvider>
+      <Navbar count={count}  />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="about" element={<About />} />
@@ -34,13 +34,14 @@ function App() {
         <Route path="counter" element={<Numbercounter />}/>
         <Route path="userdata" element={<Apidata />} />
         <Route path="mm" element={<About2 />} />
-        <Route path="products" element={<Products cartproductlist={productlistcallback} />} />
+        <Route path="products" element={<Products />} />
         <Route path="productdetails" element={<Productdetails  callcount={countcallback} />} />
         <Route path="*" element={<Nofound />} />
         <Route path="./counter" element={<Numbercounter />} />
         <Route path="userdetails" element={<Userdetails />} />
       </Routes>
-      </Provider>
+      </CounterContextProvider>
+    </div>
   );
 }
 

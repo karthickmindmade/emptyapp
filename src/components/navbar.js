@@ -1,21 +1,26 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState ,useContext} from "react"
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
-function Navbar(props) {
-  const{productlist}=props
+import { CounterContext } from '../contex/productprovider'
+import { Button } from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
+function Navbar() {
+  
+  const { value ,handleRemove} = useContext(CounterContext);
+  
   const [count, setCount] = useState();
   const [opencart,setopencart]=useState()
 const cart=()=>{
   setopencart(!opencart)
 }
 useEffect(()=>{
-  setCount(productlist.length)
+  setCount(value.length)
 })
-console.log(productlist)
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light text-white bg-primary fixed-top">
@@ -57,18 +62,21 @@ console.log(productlist)
           </IconButton>
           {opencart ? <div className="cart-dialog">
             <div className="cart-body">
-            {productlist.map((product)=>
+            {value.map((product)=>
+              <Badge badgeContent={product.count} color="secondary">
             <div className='colorlist'>
             <div className='flex' key={product.id}>              
-                <div ><img src={product.imgurl} alt="avatar" width={40} /></div>
+                <div ><img src={product.imgurl} alt="avatar" width={40} height={50}/></div>
                 <div>
                 <div className="cartproduct-title">{product.title}</div>
-                <div>{product.price}</div>
+                <div>${product.price}</div>
                 </div>
-                
-               <button className="float-end">X</button>
+                <Button className="remove-button float-end" onClick={() => handleRemove(product.id)}><DeleteIcon /></Button>
+               
             </div>
+            <div>{product.count}</div>
             </div>
+            </Badge>
           )}
             </div>
           </div>:<></>}    

@@ -31,7 +31,7 @@ function ProductLayout(props) {
             </div>
             <div className="flex">
             <button className="cart-button" onClick={props.onClick}><ShoppingCartIcon />Add to cart</button>
-            <button className="cart-button"   onClick={props.clickfunction}><FlashOnIcon />Buy Now</button>
+            <button className="buy-cart-button"   onClick={props.clickfunction}><FlashOnIcon />Buy Now</button>
             </div>
            
             <div className="product-description">

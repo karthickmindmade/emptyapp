@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import ReactStars from "react-rating-stars-component";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import "./css/style.css";
 import { useLocation } from "react-router-dom"
 import Numbercounter from "./counter";
+import { Button } from "bootstrap";
+import { CounterContext } from './contex/productprovider'
 function Productdetails(props) {
-  const [count, setCount] = useState(JSON.parse(window.localStorage.getItem('count')));
+  const { handleUpdate } = useContext(CounterContext);
+  const [count, setCount] = useState(1);
   const incrementCount = () => {
     setCount(count + 1);
   };
@@ -20,10 +23,7 @@ function Productdetails(props) {
     }
   }
   const { state } = useLocation()
-  useEffect(() => {
-    window.localStorage.setItem('count', count);
-    props.callcount(count)
-  }, [count]);
+  
   return (
     <div>
       <div className="margin product-details">
@@ -47,7 +47,8 @@ function Productdetails(props) {
                 />
               </div>
               <div className="cart">
-                <Numbercounter lessbutton={decrementCount} plusbutton={incrementCount} counter={count} />        
+               
+                <Numbercounter onClick={()=>handleUpdate(state.productid,state.productPrice,count)}  lessbutton={decrementCount} plusbutton={incrementCount} counter={count} />        
               </div>
               <div className="productPrice">
                 ${state.productPrice}
