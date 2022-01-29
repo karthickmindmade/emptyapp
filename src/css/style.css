@@ -452,4 +452,11 @@ div#navbarNavDropdown {
   .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
       min-width: 0px !important
   }
+  .modify-dropdown{
+      position: relative !important;
+      transform: none !important;
+  }
+  .siled-area {
+    display: table-caption;
+}
   

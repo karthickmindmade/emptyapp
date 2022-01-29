@@ -12,9 +12,10 @@ import Productdetails from "./productdetails";
 import Nofound from "./components/nofound";
 import Userdetails from "./userdetails";
 import ReactDOM from 'react-dom'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'jquery/dist/jquery.min.js'
-import 'bootstrap/dist/js/bootstrap.min.js'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import $ from 'jquery';
+import Popper from 'popper.js';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import CounterContextProvider from './contex/productprovider';
 
 function App() {

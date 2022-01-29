@@ -99,28 +99,27 @@ function Products(props) {
 
   return (
     <div className="margin ">
-      <div class="d-flex align-items-start ">
-        <div class="nav flex-column nav-pills me-3 " id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <div className="d-flex align-items-start ">
+        <div className="nav flex-column nav-pills me-3 " id="v-pills-tab" role="tablist" aria-orientation="vertical">
           <div className="left-siedebar">
-            <div class="product-tab " id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
-              <button class="category-btn btn-none" data-bs-toggle="collapse" href="#collapseExample" onClick={handleClick} aria-expanded="false" aria-controls="collapseExample">
+            <div className="product-tab " id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
+              <button className="category-btn btn-none" data-bs-toggle="collapse" href="#collapseExample" onClick={handleClick} aria-expanded="false" aria-controls="collapseExample">
                 Category{show ? <FontAwesomeIcon icon={faCaretDown} /> : <FontAwesomeIcon icon={faCaretRight} />}
               </button>
-              <div class="collapse " id="collapseExample">
-                <div class="sub-category ">
+                  {show ?       
+                <div className="sub-category ">
                   <ul>
                     <li className='flex'><input className="form-check-input" onClick={handleClick1} checked={checked1} type="checkbox" value="men's clothing" onChange={(e) => setselectedMens(e.target.value)} /><div class="ms-1">men's clothing</div></li>
                     <li className='flex'><input className="form-check-input" onClick={handleClick21} checked={checked2} type="checkbox" value="jewelery" onChange={(e) => setselectedJewwel(e.target.value)} /><div class="ms-1">jewelery</div></li>
                     <li className='flex'><input className="form-check-input" onClick={handleClick3} checked={checked3} type="checkbox" value="electronics" onChange={(e) => setselectedelevtro(e.target.value)} /><div class="ms-1">electronics</div></li>
                     <li className='flex'><input className="form-check-input" onClick={handleClick4} checked={checked4} type="checkbox" value="women's clothing" onChange={(e) => setselectedwomen(e.target.value)} /><div class="ms-1">women's clothing</div></li>
                   </ul>
-                </div>
-              </div>
-              <button class="category-btn btn-none" data-bs-toggle="collapse" href="#collapseExample2" onClick={handleClick2} aria-expanded="false" aria-controls="collapseExample2">
+                </div>:<></>}
+             
+              <button className="category-btn btn-none" data-bs-toggle="collapse" href="#collapseExample2" onClick={handleClick2} aria-expanded="false" aria-controls="collapseExample2">
                 Rating{show2 ? <FontAwesomeIcon icon={faCaretDown} /> : <FontAwesomeIcon icon={faCaretRight} />}
               </button>
-              <div class="collapse" id="collapseExample2">
-                <div class="sub-category">
+             {show2 ?  <div className="sub-category">
                   <select className="product-catg" type="text" value={search} onChange={(e) => setSearch2(e.target.value)} multiple>
                     <option type="checkbox" value="">All</option>
                     <option type="checkbox" value="4.">between 4.0 to 4.9</option>
@@ -128,8 +127,9 @@ function Products(props) {
                     <option type="checkbox" value="2.">between 2.0 to 2.9</option>
                     <option type="checkbox" value="1.">between 1.0 to 1.9</option>
                   </select>
-                </div>
-              </div>
+                </div>:<></>}
+               
+             
               <div className="flex">
                 <div className="">
                   Sort by Z to A
@@ -158,8 +158,8 @@ function Products(props) {
             </div>
           </div>
         </div>
-        <div class="tab-content" id="v-pills-tabContent">
-          <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+        <div className="tab-content" id="v-pills-tabContent">
+          <div className="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
             <div>
               <div className="products-body row">
                 {sortdata.filter(val => {
