@@ -36,7 +36,7 @@ function Navbar() {
 
 
           <div class="collapse navbar-collapse" id="navbarScroll">
-            <ul className="navbar-nav">
+            <ul className="navbar-nav ms-5">
               <li className="nav-item">
                 <Link className="nav-link active text-white" aria-current="page" to="/" >Home</Link>
               </li>
@@ -65,7 +65,8 @@ function Navbar() {
               <ShoppingCartIcon />
             </Badge>
           </IconButton>
-          {opencart ? <div className="cart-dialog">
+          {opencart ? 
+          <div className="cart-dialog">
             <div className="cart-body">
               {value.map((product) =>
                 <Badge badgeContent={product.count} color="secondary">
@@ -79,7 +80,7 @@ function Navbar() {
                       <Button className="remove-button float-end" onClick={() => handleRemove(product.id)}><DeleteIcon /></Button>
 
                     </div>
-                    <div>{product.count}</div>
+                   
                   </div>
                 </Badge>
               )}

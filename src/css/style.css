@@ -460,3 +460,10 @@ div#navbarNavDropdown {
     display: table-caption;
 }
   
+.css-jcn4dz-MuiBadge-badge {
+    right: auto !important;
+    left: 0 !important;
+}
+.cart-body {
+    margin-top: 12px;
+  }

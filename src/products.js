@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons'
 import Alert from '@mui/material/Alert';
 import { CounterContext } from './contex/productprovider'
+import Slider from '@mui/material/Slider';
 function Products(props) {
   const { store } = useContext(CounterContext);
   const [show, setShow] = React.useState(false);
@@ -97,64 +98,105 @@ function Products(props) {
 
   console.log(search2)
 
+function valuetext(value) {
+  return `${value}°C`;
+}
+
+  const minDistance = 10;
+  const [value2, setValue2] = React.useState([20, 37]);
+
+  const handleChange2 = (event, newValue, activeThumb) => {
+    if (!Array.isArray(newValue)) {
+      return;
+    }
+
+    if (newValue[1] - newValue[0] < minDistance) {
+      if (activeThumb === 0) {
+        const clamped = Math.min(newValue[0], 100 - minDistance);
+        setValue2([clamped, clamped + minDistance]);
+      } else {
+        const clamped = Math.max(newValue[1], minDistance);
+        setValue2([clamped - minDistance, clamped]);
+      }
+    } else {
+      setValue2(newValue);
+    }
+  };
+console.log(value2)
   return (
     <div className="margin ">
       <div className="d-flex align-items-start ">
         <div className="nav flex-column nav-pills me-3 " id="v-pills-tab" role="tablist" aria-orientation="vertical">
           <div className="left-siedebar">
             <div className="product-tab " id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
-              <button className="category-btn btn-none" data-bs-toggle="collapse" href="#collapseExample" onClick={handleClick} aria-expanded="false" aria-controls="collapseExample">
-                Category{show ? <FontAwesomeIcon icon={faCaretDown} /> : <FontAwesomeIcon icon={faCaretRight} />}
-              </button>
-                  {show ?       
-                <div className="sub-category ">
-                  <ul>
-                    <li className='flex'><input className="form-check-input" onClick={handleClick1} checked={checked1} type="checkbox" value="men's clothing" onChange={(e) => setselectedMens(e.target.value)} /><div class="ms-1">men's clothing</div></li>
-                    <li className='flex'><input className="form-check-input" onClick={handleClick21} checked={checked2} type="checkbox" value="jewelery" onChange={(e) => setselectedJewwel(e.target.value)} /><div class="ms-1">jewelery</div></li>
-                    <li className='flex'><input className="form-check-input" onClick={handleClick3} checked={checked3} type="checkbox" value="electronics" onChange={(e) => setselectedelevtro(e.target.value)} /><div class="ms-1">electronics</div></li>
-                    <li className='flex'><input className="form-check-input" onClick={handleClick4} checked={checked4} type="checkbox" value="women's clothing" onChange={(e) => setselectedwomen(e.target.value)} /><div class="ms-1">women's clothing</div></li>
-                  </ul>
-                </div>:<></>}
-             
-              <button className="category-btn btn-none" data-bs-toggle="collapse" href="#collapseExample2" onClick={handleClick2} aria-expanded="false" aria-controls="collapseExample2">
-                Rating{show2 ? <FontAwesomeIcon icon={faCaretDown} /> : <FontAwesomeIcon icon={faCaretRight} />}
-              </button>
-             {show2 ?  <div className="sub-category">
-                  <select className="product-catg" type="text" value={search} onChange={(e) => setSearch2(e.target.value)} multiple>
-                    <option type="checkbox" value="">All</option>
-                    <option type="checkbox" value="4.">between 4.0 to 4.9</option>
-                    <option type="checkbox" value="3.">between 3.0 to 3.9</option>
-                    <option type="checkbox" value="2.">between 2.0 to 2.9</option>
-                    <option type="checkbox" value="1.">between 1.0 to 1.9</option>
-                  </select>
-                </div>:<></>}
-               
-             
-              <div className="flex">
-                <div className="">
-                  Sort by Z to A
-                </div>
-                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="sortZtoA" onChange={(e) => setsort(e.target.value)} />
+              <div className="category-btn btn-none" >
+                Category
               </div>
-              <br />
-              <div className="flex">
-                <div className="">
-                  Sort by A to Z
-                </div>
-                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="sortAtoZ" onChange={(e) => setsort(e.target.value)} />
+
+              <div className="sub-category ">
+                <ul>
+                  <li className='flex'><input className="form-check-input" onClick={handleClick1} checked={checked1} type="checkbox" value="men's clothing" onChange={(e) => setselectedMens(e.target.value)} /><div class="ms-1">men's clothing</div></li>
+                  <li className='flex'><input className="form-check-input" onClick={handleClick21} checked={checked2} type="checkbox" value="jewelery" onChange={(e) => setselectedJewwel(e.target.value)} /><div class="ms-1">jewelery</div></li>
+                  <li className='flex'><input className="form-check-input" onClick={handleClick3} checked={checked3} type="checkbox" value="electronics" onChange={(e) => setselectedelevtro(e.target.value)} /><div class="ms-1">electronics</div></li>
+                  <li className='flex'><input className="form-check-input" onClick={handleClick4} checked={checked4} type="checkbox" value="women's clothing" onChange={(e) => setselectedwomen(e.target.value)} /><div class="ms-1">women's clothing</div></li>
+                </ul>
               </div>
-              <div className="flex">
-                <div className="">
-                  Sort by low to high
-                </div>
-                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="sortLtoH" onChange={(e) => setsort(e.target.value)} />
+
+              <div className="category-btn btn-none" >
+                Rating
               </div>
-              <div className="flex">
-                <div className="">
-                  Sort by high to low
-                </div>
-                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="sortHtoL" onChange={(e) => setsort(e.target.value)} />
+              <div className="sub-category">
+                <select className="product-catg" type="text" value={search} onChange={(e) => setSearch2(e.target.value)} multiple>
+                  <option type="checkbox" value="">All</option>
+                  <option type="checkbox" value="4.">between 4.0 to 4.9</option>
+                  <option type="checkbox" value="3.">between 3.0 to 3.9</option>
+                  <option type="checkbox" value="2.">between 2.0 to 2.9</option>
+                  <option type="checkbox" value="1.">between 1.0 to 1.9</option>
+                </select>
               </div>
+              <div className="category-btn btn-none" >
+                Sorting
+              </div>
+              <div className="sub-category ">
+                <ul>
+                  <li className='flex'>
+                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="sortZtoA" onChange={(e) => setsort(e.target.value)} />
+                    <div className="ms-1">
+                      Sort by Z to A
+                    </div>
+                  </li>
+                  <li className='flex'>
+                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="sortAtoZ" onChange={(e) => setsort(e.target.value)} />
+                    <div className="ms-1">
+                      Sort by A to Z
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div className="sub-category ">
+                <ul>
+                  <li className='flex'>
+                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="sortLtoH" onChange={(e) => setsort(e.target.value)} />
+                    <div className="ms-1">
+                      Sort by low to high
+                    </div>
+                  </li>
+                  <li className='flex'>
+                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="sortHtoL" onChange={(e) => setsort(e.target.value)} />
+                    <div className="ms-1">
+                      Sort by high to low
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <Slider
+        getAriaLabel={() => 'Minimum distance shift'}
+        value={value2}
+        onChange={handleChange2}
+        valueLabelDisplay="auto"
+        getAriaValueText={valuetext}
+        disableSwap
+      />
             </div>
           </div>
         </div>
@@ -164,7 +206,11 @@ function Products(props) {
               <div className="products-body row">
                 {sortdata.filter(val => {
                   if (search === "xxxxxxxx" && search2 === "") {
-                    return val;
+                    for (var j = 100; j <= 200; j++) {
+                      if (j === parseInt(val.price)) {
+                        return val;
+                      }
+                    }
                   } else if (search !== "xxxxxxxx" || search2 !== "") {
                     if (search !== "xxxxxxxx") {
                       return val.category.toLowerCase().includes(selectedMens.toLowerCase()) ||
@@ -178,7 +224,7 @@ function Products(props) {
                     return val.category.toLowerCase().includes(selectedMens.toLowerCase()) ||
                       val.category.toLowerCase().includes(selectedJewwel.toLowerCase()) ||
                       val.category.toLowerCase().includes(selectedelevtro.toLowerCase()) ||
-                      val.category.toLowerCase().includes(selectedwomen.toLowerCase())&&val.rating.rate.toString().includes(search2.toString()) 
+                      val.category.toLowerCase().includes(selectedwomen.toLowerCase()) && val.rating.rate.toString().includes(search2.toString())
                   }
                 }).map((productsList) =>
                   <ProductLayout
