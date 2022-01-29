@@ -9,19 +9,7 @@ import { Button } from "bootstrap";
 import { CounterContext } from './contex/productprovider'
 function Productdetails(props) {
   const { handleUpdate } = useContext(CounterContext);
-  const [count, setCount] = useState(1);
-  const incrementCount = () => {
-    setCount(count + 1);
-  };
-  const decrementCount = () => {
-    if (count < 1) {
-      setCount(
-        0
-      );
-    } else {
-      setCount(count - 1);
-    }
-  }
+ 
   const { state } = useLocation()
   
   return (
@@ -48,7 +36,7 @@ function Productdetails(props) {
               </div>
               <div className="cart">
                
-                <Numbercounter onClick={()=>handleUpdate(state.productid,state.productPrice,count)}  lessbutton={decrementCount} plusbutton={incrementCount} counter={count} />        
+                <Numbercounter onClick={()=>handleUpdate(state.productid,state.productPrice)} />        
               </div>
               <div className="productPrice">
                 ${state.productPrice}

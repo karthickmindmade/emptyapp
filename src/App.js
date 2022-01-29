@@ -12,22 +12,18 @@ import Productdetails from "./productdetails";
 import Nofound from "./components/nofound";
 import Userdetails from "./userdetails";
 import ReactDOM from 'react-dom'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import $ from 'jquery';
-import Popper from 'popper.js';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.min.js'
 import CounterContextProvider from './contex/productprovider';
 
 function App() {
-  const countcallback = (childData) => {
-    setCount(childData)
-  }
  
-  const [count, setCount] = useState();
+ 
+ 
   return (
    <div>
       <CounterContextProvider>
-      <Navbar count={count}  />
+      <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="about" element={<About />} />
@@ -36,7 +32,7 @@ function App() {
         <Route path="userdata" element={<Apidata />} />
         <Route path="mm" element={<About2 />} />
         <Route path="products" element={<Products />} />
-        <Route path="productdetails" element={<Productdetails  callcount={countcallback} />} />
+        <Route path="productdetails" element={<Productdetails  />} />
         <Route path="*" element={<Nofound />} />
         <Route path="./counter" element={<Numbercounter />} />
         <Route path="userdetails" element={<Userdetails />} />

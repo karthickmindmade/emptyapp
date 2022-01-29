@@ -1,29 +1,30 @@
 import { createContext, useState, useEffect } from "react";
-import { set } from "react-hook-form";
-import update from 'immutability-helper';
 export const CounterContext = createContext();
-
 export default function CounterContextProvider(props) {
-    const [value, setValue] = useState([
-       
-    ]);
+    const [value, setValue] = useState([]);
     const [title, settitle] = useState('')
-   
     const [filtervalue, setfiltervalue] = useState('')
-
-
-
-    useEffect(() => {
-        
-    }, [value])
-
+    
+  
     //fuction to add product into cart
+    const [count, setCount] = useState(1);
+    const incrementCount=()=> {
+      setCount(count + 1);
+    };
+    const decrementCount = () => {
+      if (count < 1) {
+        setCount(
+          0
+        );
+      } else {
+        setCount(count - 1);
+      }
+    }
+      
     function store(productsList) {
-        value.filter(val => val.title.includes(title)).map((tickets) => setfiltervalue(tickets.id))
+      
         settitle(productsList.title)
-        if (filtervalue === productsList.id) {
-            
-        } else {
+        if (filtervalue!==productsList.id) {
             setValue([...value, {
                 id: productsList.id,
                 imgurl: productsList.image,
@@ -31,27 +32,23 @@ export default function CounterContextProvider(props) {
                 price: productsList.price,
                 count: 1
             }])
-        }
+        } 
     }
-
+    useEffect(() => {
+        value.filter(val => val.title.includes(title)).map((tickets) => setfiltervalue(tickets.id))
+    },[value])
     //remove product from cart
     const handleRemove = (id) => {
         const newPeople = value.filter((person) => person.id !== id);
 
         setValue(newPeople);
     };
-
-   
-
-
-function handleUpdate(productid,productPrice,count){
-    console.log(productid)
-    setValue(Object.values({...value, [productid-1]: {...value[productid-1], price: productPrice*count,count:count }}))
-}
-
-
+    function handleUpdate(productid, productPrice) {
+        console.log(productid)
+        setValue(Object.values({ ...value, [productid - 1]: { ...value[productid - 1], price: productPrice * count, count: count } }))
+    }
     return (
-        <CounterContext.Provider value={{ store, value, handleRemove,handleUpdate }}>
+        <CounterContext.Provider value={{ store, value, handleRemove, handleUpdate,incrementCount,decrementCount,count}}>
             {props.children}
         </CounterContext.Provider>
     )
