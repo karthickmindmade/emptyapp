@@ -9,7 +9,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { CounterContext } from './contex/productprovider'
 import Slider from '@mui/material/Slider';
 function Products(props) {
-  const { store,count } = useContext(CounterContext);
+  const { store, count } = useContext(CounterContext);
   const [show, setShow] = React.useState(false);
   const [show2, setShow2] = React.useState(false);
   const navigate = useNavigate();
@@ -20,11 +20,11 @@ function Products(props) {
   const [sortdata, setsortdata] = useState([])
   console.log(selectedValue)
   var [productsList, setProductsList] = useState([]);
-  const[showdata,setshowdata]=useState(false)
+  const [showdata, setshowdata] = useState(false)
   useEffect(() => {
     Axios.get("https://fakestoreapi.com/products").then(res => {
       setProductsList(res.data);
-        setshowdata(true)
+      setshowdata(true)
     });
     if (sort === "sortZtoA") {
       setsortdata([...productsList].sort((a, b) => (a.title > b.title) ? -1 : 1))
@@ -39,8 +39,29 @@ function Products(props) {
 
     } else { setsortdata(productsList) }
   }, [sort, productsList]);
+
+  const [ratesort, setratesort] = useState([])
+  useEffect(() => {
+    if (search2 !== "") {
+      setratesort(sortdata.filter(val => { return val.rating.rate.toString().includes(search2.toString()) }))
+    } else {
+      setratesort(sortdata)
+    }
+
+  }, [sortdata, search2])
+  const [startValue, setstartValue] = React.useState(0);
+  const [endValue, setendValue] = React.useState(1000);
+  const [sortProduct, setsortProduct] = useState([])
+  useEffect(() => {
+    setsortProduct(ratesort.filter(val => {
+      for (var j = startValue; j <= endValue; j++) {
+        if (j === parseInt(val.price)) {
+          return val;
+        }
+      }
+    }))
+  }, [ratesort])
   const ProductClick = (productsList) => {
-  
     console.log(productsList.id)
     navigate('/productdetails', {
       state: {
@@ -92,18 +113,6 @@ function Products(props) {
     setSearch(selectedMens + selectedJewwel + selectedelevtro + selectedwomen)
   })
   console.log(search2)
-  const [startValue, setstartValue] = React.useState(0);
-  const [endValue, setendValue] = React.useState(1000);
-  const [sortProduct, setsortProduct] = useState([])
-  useEffect(() => {
-    setsortProduct(sortdata.filter(val => {
-      for (var j = startValue; j <= endValue; j++) {
-        if (j === parseInt(val.price)) {
-          return val;
-        }
-      }
-    }))
-  },[sortdata])
   return (
     <div className="margin ">
       <div className="d-flex align-items-start ">
@@ -172,22 +181,31 @@ function Products(props) {
                 Sort by Price
               </div>
               <div className="sub-category mt-2 flex">
-              <select className="" type="text" value={startValue} onChange={(e) => setstartValue(e.target.value)} >
-                  <option  value="0">0</option>
-                  <option  value="100">100</option>
-                  <option  value="200">200</option>
-                  <option  value="300">300</option>
-                  <option  value="400">400</option>
-                  <option  value="500">500</option>
-                </select>
+                <select className="" type="text" value={startValue} onChange={(e) => setstartValue(e.target.value)} >
+                  <option value="0">0</option>
+                  <option value="100">100</option>
+                  <option value="200">200</option>
+                  <option value="300">300</option>
+                  <option value="400">400</option>
+                  <option value="500">500</option>
+                  <option value="100">600</option>
+                  <option value="200">700</option>
+                  <option value="300">800</option>
+                  <option value="400">900</option>
+                </select>$
                 <div className="ms-21">To</div>
                 <select className="" type="text" value={endValue} onChange={(e) => setendValue(e.target.value)} >
-                  <option  value="600">600</option>
-                  <option  value="700">700</option>
-                  <option  value="800">800</option>
-                  <option  value="900">900</option>
-                  <option  value="1000">1100</option>
-                </select>
+                  <option value="100">100</option>
+                  <option value="200">200</option>
+                  <option value="300">300</option>
+                  <option value="400">400</option>
+                  <option value="500">500</option>
+                  <option value="600">600</option>
+                  <option value="700">700</option>
+                  <option value="800">800</option>
+                  <option value="900">900</option>
+                  <option value="1000">1100</option>
+                </select>$
               </div>
             </div>
           </div>
@@ -195,25 +213,15 @@ function Products(props) {
         <div className="tab-content" id="v-pills-tabContent">
           <div className="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
             <div>
-              {(!showdata) ? <div className="loading"> <CircularProgress /></div>:<div className="products-body row">
+              {(!showdata) ? <div className="loading"> <CircularProgress /></div> : <div className="products-body row">
                 {sortProduct.filter(val => {
-                  if (search === "xxxxxxxx" && search2 === "") {
+                  if (search === "xxxxxxxx") {
                     return val;
-
-                  } else if (search !== "xxxxxxxx" || search2 !== "") {
-                    if (search !== "xxxxxxxx") {
-                      return val.category.toLowerCase().includes(selectedMens.toLowerCase()) ||
-                        val.category.toLowerCase().includes(selectedJewwel.toLowerCase()) ||
-                        val.category.toLowerCase().includes(selectedelevtro.toLowerCase()) ||
-                        val.category.toLowerCase().includes(selectedwomen.toLowerCase())
-                    } else if (search2 !== "") {
-                      return val.rating.rate.toString().includes(search2.toString())
-                    }
-                  } else if (search !== "xxxxxxxx" && search2 !== "") {
+                  } else if (search !== "xxxxxxxx") {
                     return val.category.toLowerCase().includes(selectedMens.toLowerCase()) ||
                       val.category.toLowerCase().includes(selectedJewwel.toLowerCase()) ||
                       val.category.toLowerCase().includes(selectedelevtro.toLowerCase()) ||
-                      val.category.toLowerCase().includes(selectedwomen.toLowerCase()) && val.rating.rate.toString().includes(search2.toString())
+                      val.category.toLowerCase().includes(selectedwomen.toLowerCase())
                   }
                 }).map((productsList) =>
                   <ProductLayout

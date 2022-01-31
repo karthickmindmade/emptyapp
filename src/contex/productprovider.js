@@ -20,9 +20,6 @@ export default function CounterContextProvider(props) {
         setCount(count - 1);
       }
     }
-      
-   
-  
     //remove product from cart
     const handleRemove = (id) => {
         const newPeople = value.filter((person) => person.id !== id);
@@ -44,7 +41,7 @@ export default function CounterContextProvider(props) {
                 count: 1
             }])
         } 
-        setCount(1)
+       
     }
    
     return (
