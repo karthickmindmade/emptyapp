@@ -22,8 +22,7 @@ export default function CounterContextProvider(props) {
     }
       
     function store(productsList) {
-      
-        settitle(productsList.title)
+      value.filter(val => val.title.includes(productsList.title)).map((tickets) => setfiltervalue(tickets.id))
         if (filtervalue!==productsList.id) {
             setValue([...value, {
                 id: productsList.id,
@@ -33,10 +32,9 @@ export default function CounterContextProvider(props) {
                 count: 1
             }])
         } 
+            
     }
-    useEffect(() => {
-        value.filter(val => val.title.includes(title)).map((tickets) => setfiltervalue(tickets.id))
-    },[value])
+  
     //remove product from cart
     const handleRemove = (id) => {
         const newPeople = value.filter((person) => person.id !== id);

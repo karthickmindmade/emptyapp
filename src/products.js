@@ -5,9 +5,7 @@ import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import ProductLayout from "./components/productLayout";
 import { useNavigate } from "react-router-dom"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons'
-import Alert from '@mui/material/Alert';
+import CircularProgress from '@mui/material/CircularProgress';
 import { CounterContext } from './contex/productprovider'
 import Slider from '@mui/material/Slider';
 function Products(props) {
@@ -22,11 +20,11 @@ function Products(props) {
   const [sortdata, setsortdata] = useState([])
   console.log(selectedValue)
   var [productsList, setProductsList] = useState([]);
-
-
+  const[showdata,setshowdata]=useState(false)
   useEffect(() => {
     Axios.get("https://fakestoreapi.com/products").then(res => {
       setProductsList(res.data);
+        setshowdata(true)
     });
     if (sort === "sortZtoA") {
       setsortdata([...productsList].sort((a, b) => (a.title > b.title) ? -1 : 1))
@@ -40,11 +38,8 @@ function Products(props) {
       setsortdata([...productsList].sort((a, b) => (parseFloat(b.price) - parseFloat(a.price))))
 
     } else { setsortdata(productsList) }
-
-
   }, [sort, productsList]);
   const ProductClick = (productsList) => {
-
     console.log(productsList.id)
     navigate('/productdetails', {
       state: {
@@ -95,34 +90,19 @@ function Products(props) {
   useEffect(() => {
     setSearch(selectedMens + selectedJewwel + selectedelevtro + selectedwomen)
   })
-
   console.log(search2)
-
-function valuetext(value) {
-  return `${value}°C`;
-}
-
-  const minDistance = 10;
-  const [value2, setValue2] = React.useState([20, 37]);
-
-  const handleChange2 = (event, newValue, activeThumb) => {
-    if (!Array.isArray(newValue)) {
-      return;
-    }
-
-    if (newValue[1] - newValue[0] < minDistance) {
-      if (activeThumb === 0) {
-        const clamped = Math.min(newValue[0], 100 - minDistance);
-        setValue2([clamped, clamped + minDistance]);
-      } else {
-        const clamped = Math.max(newValue[1], minDistance);
-        setValue2([clamped - minDistance, clamped]);
+  const [startValue, setstartValue] = React.useState(0);
+  const [endValue, setendValue] = React.useState(1000);
+  const [sortProduct, setsortProduct] = useState([])
+  useEffect(() => {
+    setsortProduct(sortdata.filter(val => {
+      for (var j = startValue; j <= endValue; j++) {
+        if (j === parseInt(val.price)) {
+          return val;
+        }
       }
-    } else {
-      setValue2(newValue);
-    }
-  };
-console.log(value2)
+    }))
+  },[sortdata])
   return (
     <div className="margin ">
       <div className="d-flex align-items-start ">
@@ -132,7 +112,6 @@ console.log(value2)
               <div className="category-btn btn-none" >
                 Category
               </div>
-
               <div className="sub-category ">
                 <ul>
                   <li className='flex'><input className="form-check-input" onClick={handleClick1} checked={checked1} type="checkbox" value="men's clothing" onChange={(e) => setselectedMens(e.target.value)} /><div class="ms-1">men's clothing</div></li>
@@ -141,7 +120,6 @@ console.log(value2)
                   <li className='flex'><input className="form-check-input" onClick={handleClick4} checked={checked4} type="checkbox" value="women's clothing" onChange={(e) => setselectedwomen(e.target.value)} /><div class="ms-1">women's clothing</div></li>
                 </ul>
               </div>
-
               <div className="category-btn btn-none" >
                 Rating
               </div>
@@ -189,28 +167,38 @@ console.log(value2)
                   </li>
                 </ul>
               </div>
-              <Slider
-        getAriaLabel={() => 'Minimum distance shift'}
-        value={value2}
-        onChange={handleChange2}
-        valueLabelDisplay="auto"
-        getAriaValueText={valuetext}
-        disableSwap
-      />
+              <div className="category-btn btn-none mt-2" >
+                Sort by Price
+              </div>
+              <div className="sub-category mt-2 flex">
+              <select className="" type="text" value={startValue} onChange={(e) => setstartValue(e.target.value)} >
+                  <option  value="0">0</option>
+                  <option  value="100">100</option>
+                  <option  value="200">200</option>
+                  <option  value="300">300</option>
+                  <option  value="400">400</option>
+                  <option  value="500">500</option>
+                </select>
+                <div className="ms-21">To</div>
+                <select className="" type="text" value={endValue} onChange={(e) => setendValue(e.target.value)} >
+                  <option  value="600">600</option>
+                  <option  value="700">700</option>
+                  <option  value="800">800</option>
+                  <option  value="900">900</option>
+                  <option  value="1000">1100</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
         <div className="tab-content" id="v-pills-tabContent">
           <div className="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
             <div>
-              <div className="products-body row">
-                {sortdata.filter(val => {
+              {(!showdata) ? <div className="loading"> <CircularProgress /></div>:<div className="products-body row">
+                {sortProduct.filter(val => {
                   if (search === "xxxxxxxx" && search2 === "") {
-                    for (var j = 100; j <= 200; j++) {
-                      if (j === parseInt(val.price)) {
-                        return val;
-                      }
-                    }
+                    return val;
+
                   } else if (search !== "xxxxxxxx" || search2 !== "") {
                     if (search !== "xxxxxxxx") {
                       return val.category.toLowerCase().includes(selectedMens.toLowerCase()) ||
@@ -239,6 +227,7 @@ console.log(value2)
                   />
                 )}
               </div>
+              }
             </div>
           </div>
         </div>
@@ -246,5 +235,4 @@ console.log(value2)
     </div>
   );
 }
-
 export default Products;

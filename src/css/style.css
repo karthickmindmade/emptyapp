@@ -467,3 +467,10 @@ div#navbarNavDropdown {
 .cart-body {
     margin-top: 12px;
   }
+  .loading{
+    margin-top: 20%;
+    margin-left: 45%;
+}
+.sub-category select option {
+    color: #0d85fd;
+}
