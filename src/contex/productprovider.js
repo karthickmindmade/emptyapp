@@ -32,7 +32,7 @@ export default function CounterContextProvider(props) {
                 count: 1
             }])
         } 
-            
+        setCount(1)
     }
   
     //remove product from cart
