@@ -21,6 +21,18 @@ export default function CounterContextProvider(props) {
       }
     }
       
+   
+  
+    //remove product from cart
+    const handleRemove = (id) => {
+        const newPeople = value.filter((person) => person.id !== id);
+
+        setValue(newPeople);
+    };
+    function handleUpdate(productid, productPrice) {
+        console.log(productid)
+        setValue(Object.values({ ...value, [productid - 1]: { ...value[productid - 1], price: productPrice * count, count: count } }))
+    }
     function store(productsList) {
       value.filter(val => val.title.includes(productsList.title)).map((tickets) => setfiltervalue(tickets.id))
         if (filtervalue!==productsList.id) {
@@ -34,17 +46,7 @@ export default function CounterContextProvider(props) {
         } 
         setCount(1)
     }
-  
-    //remove product from cart
-    const handleRemove = (id) => {
-        const newPeople = value.filter((person) => person.id !== id);
-
-        setValue(newPeople);
-    };
-    function handleUpdate(productid, productPrice) {
-        console.log(productid)
-        setValue(Object.values({ ...value, [productid - 1]: { ...value[productid - 1], price: productPrice * count, count: count } }))
-    }
+   
     return (
         <CounterContext.Provider value={{ store, value, handleRemove, handleUpdate,incrementCount,decrementCount,count}}>
             {props.children}

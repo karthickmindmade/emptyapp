@@ -9,7 +9,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { CounterContext } from './contex/productprovider'
 import Slider from '@mui/material/Slider';
 function Products(props) {
-  const { store } = useContext(CounterContext);
+  const { store,count } = useContext(CounterContext);
   const [show, setShow] = React.useState(false);
   const [show2, setShow2] = React.useState(false);
   const navigate = useNavigate();
@@ -40,6 +40,7 @@ function Products(props) {
     } else { setsortdata(productsList) }
   }, [sort, productsList]);
   const ProductClick = (productsList) => {
+  
     console.log(productsList.id)
     navigate('/productdetails', {
       state: {
