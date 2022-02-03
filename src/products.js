@@ -47,7 +47,6 @@ function Products(props) {
     } else {
       setratesort(sortdata)
     }
-
   }, [sortdata, search2])
   const [startValue, setstartValue] = React.useState(0);
   const [endValue, setendValue] = React.useState(1000);
@@ -109,7 +108,7 @@ function Products(props) {
   const handleClick21 = () => setChecked2(!checked2)
   const handleClick3 = () => setChecked3(!checked3)
   const handleClick4 = () => setChecked4(!checked4)
-  useEffect(() => {
+  useEffect(() =>{
     setSearch(selectedMens + selectedJewwel + selectedelevtro + selectedwomen)
   })
   console.log(search2)
@@ -188,10 +187,10 @@ function Products(props) {
                   <option value="300">300</option>
                   <option value="400">400</option>
                   <option value="500">500</option>
-                  <option value="100">600</option>
-                  <option value="200">700</option>
-                  <option value="300">800</option>
-                  <option value="400">900</option>
+                  <option value="600">600</option>
+                  <option value="700">700</option>
+                  <option value="800">800</option>
+                  <option value="900">900</option>
                 </select>$
                 <div className="ms-21">To</div>
                 <select className="" type="text" value={endValue} onChange={(e) => setendValue(e.target.value)} >

@@ -11,7 +11,17 @@ function Productdetails(props) {
   const { handleUpdate } = useContext(CounterContext);
  
   const { state } = useLocation()
-  
+  const [count, setCount] = useState(1);
+  const incrementCount=()=> {
+    setCount(count + 1);
+  };
+  const decrementCount = () => {
+    if (count < 1) {
+      setCount(0);
+    } else{
+      setCount(count - 1);
+    }
+  }
   return (
     <div>
       <div className="margin product-details">
@@ -36,7 +46,11 @@ function Productdetails(props) {
               </div>
               <div className="cart">
                
-                <Numbercounter onClick={()=>handleUpdate(state.productid,state.productPrice)} />        
+                <Numbercounter
+                incrementCount={incrementCount}
+                decrementCount={decrementCount}
+                count={count}
+                 onClick={()=>handleUpdate(state.productid,state.productPrice,count)} />        
               </div>
               <div className="productPrice">
                 ${state.productPrice}

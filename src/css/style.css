@@ -276,7 +276,8 @@ button.cart-btn {
     width: 26px;
 }
 .nav-logo img {
-    width: 86px;
+    width: 50px;
+    /* height: 9vh; */
     /* padding: 30px 20px; */
 }
 .navbar-toggler:focus {
@@ -452,11 +453,11 @@ div#navbarNavDropdown {
   .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
       min-width: 0px !important
   }
-  .modify-dropdown{
+.modify-dropdown{
       position: relative !important;
       transform: none !important;
   }
-  .siled-area {
+.siled-area {
     display: table-caption;
 }
   
@@ -467,10 +468,11 @@ div#navbarNavDropdown {
 .cart-body {
     margin-top: 12px;
   }
-  .loading{
+.loading{
     margin-top: 20%;
     margin-left: 45%;
 }
 .sub-category select option {
     color: #0d85fd;
 }
+

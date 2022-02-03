@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { Routes, Route } from "react-router-dom";
 import Homepage from "./homepage"
 import About from "./about"
+import Head from "react"
 import Blog from "./blogs"
 import Numbercounter from "./counter";
 import Apidata from "./userdata";
@@ -16,12 +17,15 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import CounterContextProvider from './contex/productprovider';
 
+
 function App() {
  
- 
+  
+
  
   return (
    <div>
+    
       <CounterContextProvider>
       <Navbar />
       <Routes>

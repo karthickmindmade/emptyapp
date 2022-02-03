@@ -27,7 +27,7 @@ function Navbar() {
       <nav className="navbar navbar-expand-lg navbar-light text-white bg-primary fixed-top">
         <div className="container-fluid">
           <div className="nav-logo">
-            <img src="flipkart.png" alt="logo" />
+            <img src="newlogo.png" className="ms-4" alt="logo" />
           </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
             <img className="navbar-toggler-icon" src="nav.png" alt="icon" />
