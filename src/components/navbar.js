@@ -11,7 +11,7 @@ import { Button } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 function Navbar() {
 
-  const { value, handleRemove,setclear } = useContext(CounterContext);
+  const { value, handleRemove } = useContext(CounterContext);
 
   const [count, setCount] = useState();
   const [opencart, setopencart] = useState()
@@ -67,7 +67,6 @@ function Navbar() {
           {opencart ? 
           <div className="cart-dialog">
             <div className="cart-body">
-              <button onClick={setclear(true)}>clear</button>
               {value.map((product) =>
                 <Badge badgeContent={product.count} color="secondary">
                   <div className='colorlist'>
