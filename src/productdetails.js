@@ -9,7 +9,6 @@ import { Button } from "bootstrap";
 import { CounterContext } from './contex/productprovider'
 function Productdetails(props) {
   const { handleUpdate } = useContext(CounterContext);
- 
   const { state } = useLocation()
   const [count, setCount] = useState(1);
   const incrementCount=()=> {
@@ -44,8 +43,7 @@ function Productdetails(props) {
                   activeColor="rgb(13 110 253)"
                 />
               </div>
-              <div className="cart">
-               
+              <div className="cart">              
                 <Numbercounter
                 incrementCount={incrementCount}
                 decrementCount={decrementCount}

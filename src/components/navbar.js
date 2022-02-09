@@ -9,9 +9,10 @@ import Badge from '@mui/material/Badge';
 import { CounterContext } from '../contex/productprovider'
 import { Button } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
+import Cartpage from "../cartpage";
 function Navbar() {
 
-  const { value, handleRemove } = useContext(CounterContext);
+  const { value, handleRemove,productsList } = useContext(CounterContext);
 
   const [count, setCount] = useState();
   const [opencart, setopencart] = useState()
@@ -59,32 +60,14 @@ function Navbar() {
             </ul>
 
           </div>
-          <IconButton color="inherit" onClick={cart}>
-            <Badge badgeContent={count} color="secondary">
-              <ShoppingCartIcon />
-            </Badge>
-          </IconButton>
-          {opencart ? 
-          <div className="cart-dialog">
-            <div className="cart-body">
-              {value.map((product) =>
-                <Badge badgeContent={product.count} color="secondary">
-                  <div className='colorlist'>
-                    <div className='flex' key={product.id}>
-                      <div ><img src={product.imgurl} alt="avatar" width={40} height={50} /></div>
-                      <div>
-                        <div className="cartproduct-title">{product.title}</div>
-                        <div>${product.price}</div>
-                      </div>
-                      <Button className="remove-button float-end" onClick={() => handleRemove(product.id)}><DeleteIcon /></Button>
+         
+          
+              
+             
 
-                    </div>
-                   
-                  </div>
-                </Badge>
-              )}
-            </div>
-          </div> : <></>}
+            
+                <Cartpage />
+              
         </div>
       </nav>
     </div>

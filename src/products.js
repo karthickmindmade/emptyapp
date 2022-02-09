@@ -9,7 +9,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { CounterContext } from './contex/productprovider'
 import Slider from '@mui/material/Slider';
 function Products(props) {
-  const { store, count } = useContext(CounterContext);
+  const { store } = useContext(CounterContext);
   const [show, setShow] = React.useState(false);
   const [show2, setShow2] = React.useState(false);
   const navigate = useNavigate();
@@ -18,9 +18,9 @@ function Products(props) {
   var [selectedValue] = useState('');
   const [sort, setsort] = useState()
   const [sortdata, setsortdata] = useState([])
-  console.log(selectedValue)
   var [productsList, setProductsList] = useState([]);
   const [showdata, setshowdata] = useState(false)
+  var [productsList, setProductsList] = useState([]);
   useEffect(() => {
     Axios.get("https://fakestoreapi.com/products").then(res => {
       setProductsList(res.data);
@@ -61,7 +61,7 @@ function Products(props) {
     }))
   }, [ratesort])
   const ProductClick = (productsList) => {
-    console.log(productsList.id)
+
     navigate('/productdetails', {
       state: {
         productid: productsList.id,
@@ -81,7 +81,7 @@ function Products(props) {
   const handleClick2 = () => {
     setShow2(!show2);
   };
-  console.log(sort)
+
   const [selectedMens, setselectedMens] = useState('xx');
   const [selectedJewwel, setselectedJewwel] = useState('xx');
   const [selectedelevtro, setselectedelevtro] = useState('xx');
@@ -111,7 +111,7 @@ function Products(props) {
   useEffect(() =>{
     setSearch(selectedMens + selectedJewwel + selectedelevtro + selectedwomen)
   })
-  console.log(search2)
+
   return (
     <div className="margin ">
       <div className="d-flex align-items-start ">
@@ -214,7 +214,7 @@ function Products(props) {
             <div>
               {(!showdata) ? <div className="loading"> <CircularProgress /></div> : <div className="products-body row">
                 {sortProduct.filter(val => {
-                  if (search === "xxxxxxxx") {
+                  if (search==="xxxxxxxx") {
                     return val;
                   } else if (search !== "xxxxxxxx") {
                     return val.category.toLowerCase().includes(selectedMens.toLowerCase()) ||
