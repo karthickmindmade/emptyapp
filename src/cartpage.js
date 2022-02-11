@@ -9,32 +9,31 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import IconButton from '@mui/material/IconButton';
 function Cartpage(props) {
     const { value, handleRemove, productsList } = useContext(CounterContext);
-  
-    const [open, setopen] = useState(false)
+    const [open, setopen] = useState(true)
     const [state, setState] = React.useState({
         right: false
     });
     const openclose = () => {
-        setopen(!open)
+        setopen(true)
     }
     const toggleDrawer = (anchor, open) => (event) => {
         if (
             event.type === "keydown" &&
             (event.key === "Tab" || event.key === "Shift")
-        ) {
+        ){
             return;
         }
         setState({ ...state, [anchor]: open });
     };
     const [count, setCount] = useState();
-    useEffect(() => {
+    useEffect(()=>{
         setCount(value.length)
     }, [value])
     return (
         <>
             <div>
                 <React.Fragment>
-                    <div onClick={openclose}><div onClick={toggleDrawer("right", !open)}>  <IconButton color="inherit">
+                    <div onClick={openclose}><div onClick={toggleDrawer("right", open)}>  <IconButton color="inherit">
                         <Badge badgeContent={count} color="secondary">
                             <ShoppingCartIcon />
                         </Badge>
@@ -42,9 +41,9 @@ function Cartpage(props) {
                     <Drawer
                         anchor={"right"}
                         open={state["right"]}
+                        onClick={openclose}
                         onClose={toggleDrawer("right", false)}
-                    >
-                     
+                    >                   
                             <div className="mt-5 width-40">
                                 {productsList.filter(val => {
                                     for (let i = 0; i <= 20; i++) {
@@ -53,12 +52,11 @@ function Cartpage(props) {
                                         }
                                     }
                                 }).map((product) =>
-                                    <div>
-                                        <Cartproductcount product={product} />
+                                    <div className='cartproductlist'> 
+                                        <Cartproductcount productsList={product} />
                                     </div>
                                 )}
-                            </div>
-                       
+                            </div>                    
                     </Drawer>
                 </React.Fragment>
             </div>

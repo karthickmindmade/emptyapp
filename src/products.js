@@ -61,7 +61,6 @@ function Products(props) {
     }))
   }, [ratesort])
   const ProductClick = (productsList) => {
-
     navigate('/productdetails', {
       state: {
         productid: productsList.id,
@@ -81,7 +80,6 @@ function Products(props) {
   const handleClick2 = () => {
     setShow2(!show2);
   };
-
   const [selectedMens, setselectedMens] = useState('xx');
   const [selectedJewwel, setselectedJewwel] = useState('xx');
   const [selectedelevtro, setselectedelevtro] = useState('xx');
@@ -111,7 +109,6 @@ function Products(props) {
   useEffect(() =>{
     setSearch(selectedMens + selectedJewwel + selectedelevtro + selectedwomen)
   })
-
   return (
     <div className="margin ">
       <div className="d-flex align-items-start ">

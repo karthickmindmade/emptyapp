@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import ReactStars from "react-rating-stars-component";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
@@ -8,19 +8,15 @@ import Numbercounter from "./counter";
 import { Button } from "bootstrap";
 import { CounterContext } from './contex/productprovider'
 function Productdetails(props) {
-  const { handleUpdate } = useContext(CounterContext);
+  const { handleUpdate, store2, handleDelete ,value} = useContext(CounterContext);
   const { state } = useLocation()
   const [count, setCount] = useState(1);
-  const incrementCount=()=> {
-    setCount(count + 1);
-  };
-  const decrementCount = () => {
-    if (count < 1) {
-      setCount(0);
-    } else{
-      setCount(count - 1);
-    }
-  }
+  const[productcount,setproductcount]=useState()
+  
+  useEffect(()=>{
+    
+    setproductcount(([...value].filter((val)=> {if(val===state.productid){ return val }})).length)
+},[state.productid,value])
   return (
     <div>
       <div className="margin product-details">
@@ -43,12 +39,12 @@ function Productdetails(props) {
                   activeColor="rgb(13 110 253)"
                 />
               </div>
-              <div className="cart">              
-                <Numbercounter
-                incrementCount={incrementCount}
-                decrementCount={decrementCount}
-                count={count}
-                 onClick={()=>handleUpdate(state.productid,state.productPrice,count)} />        
+              <div className="cart">                    
+                <div className="counter-body">
+                  <button className="cart-btn" title={"-"} onClick={() => handleDelete(state.productid)} >-</button>
+                  <h1>{productcount}</h1>
+                  <button className="cart-btn" title={"+"} onClick={() => store2(state.productid)}>+</button>
+                </div>
               </div>
               <div className="productPrice">
                 ${state.productPrice}

@@ -7,25 +7,33 @@ export default function CounterContextProvider(props) {
     var [productsList, setProductsList] = useState([]);
   useEffect(() => {
     Axios.get("https://fakestoreapi.com/products").then(res => {
-      setProductsList(res.data);
-     
+      setProductsList(res.data);    
     })
 },[productsList,setProductsList])
     const [filtervalue, setfiltervalue] = useState('')
     //fuction to add product into cart
-    //remove product from cart
-    const handleRemove =(id)=>{
-        const newPeople = value.filter((person) => person.id !== id);
-        setValue(newPeople);
-    };
+    //remove product from cart  
     function handleUpdate(productid, productPrice,count){
         console.log(productid)
     }
-    function store(productsList) {
-        setValue([...value,productsList.id])
+    function store2(productid) {
+        console.log(productid)
+        setValue([...value,productid])
+    }
+    function handleDelete(productid){ 
+}
+    const handleRemove =(id)=>{
+        setValue([...value].filter((val)=> {if(val!==id){ return val }}))
+    };
+    function store(productsList){    
+        for(let s=0; s<=20; s++){
+            if(productsList.id!==value[1]){
+                setValue([...value,productsList.id])
+            }   
+        } 
     }
     return (
-        <CounterContext.Provider value={{ store, value, handleRemove, handleUpdate,productsList}}>
+        <CounterContext.Provider value={{ store,store2, value, handleRemove, handleUpdate,productsList,handleDelete}}>
             {props.children}
         </CounterContext.Provider>
     )

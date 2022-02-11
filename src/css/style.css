@@ -388,12 +388,12 @@ div#navbarNavDropdown {
 }
 .cartproduct-title {
     font-size: 13px;
-    /* width: 177px; */
+    width: 266px;
     padding: 3px 7px;
 }
 .colorlist {
     padding: 6px 0px 1px 15px;
-    width: 386px;
+    width: 376px;
     font-size: 12px;
 }
 .cart-button {
@@ -492,3 +492,16 @@ div#navbarNavDropdown {
     color: #0d85fd;
 }
 
+.flex.cart-count-btn-area {
+    margin: 0px 1px 10px 20px;
+}
+.cart-count-btn {
+    padding: 0px 12px 0px 12px;
+    background-color: #1976d22e;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.cartproductlist {
+    border-bottom: 1px solid #1976d240;
+    margin: 11px 13px 0px 12px;
+}
